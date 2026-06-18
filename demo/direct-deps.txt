@@ -1,0 +1,7 @@
+
+The following files have been resolved:
+   org.springframework.boot:spring-boot-starter-thymeleaf:jar:3.3.5:compile[36m -- module spring.boot.starter.thymeleaf[0;1m [auto][m
+   org.springframework.boot:spring-boot-starter-validation:jar:3.3.5:compile[36m -- module spring.boot.starter.validation[0;1m [auto][m
+   org.springframework.boot:spring-boot-starter-web:jar:3.3.5:compile[36m -- module spring.boot.starter.web[0;1m [auto][m
+   org.springframework.boot:spring-boot-devtools:jar:3.3.5:runtime (optional)[36m -- module spring.boot.devtools[0;1m [auto][m
+

@@ -18,7 +18,7 @@
     <description>Spring Boot Student Management site</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>25</java.version>
     </properties>
 
     <dependencies>
@@ -47,8 +47,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.0</version>
                 <configuration>
                     <parameters>true</parameters>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
             <plugin>
