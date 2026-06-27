@@ -1,5 +1,3 @@
-package com.example;
-
 import java.util.Scanner;
 
 // Abstrakt sinif (Abstraction)

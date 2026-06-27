@@ -1,7 +1,3 @@
-
-
-
-//--------------------------------------------
 // Abstract class Student
 // Bu sinif bir tələbənin ümumi xüsusiyyətlərini və davranışlarını təyin edir
 // Abstract olduğu üçün birbaşa obyekt yaradıla bilməz
@@ -18,7 +14,7 @@ import java.util.Scanner;
 // Abstrakt sinif (Abstraction)
 // Bu sinif birbaşa obyekt yaratmaq üçün deyil,
 // digər siniflər üçün baza rolunu oynayır
-//abstract class Student {
+abstract class Student {
 
     // Encapsulation (İnkapsulyasiya)
     // name dəyişəni private-dir — yalnız bu sinif daxilində əlçatandır
