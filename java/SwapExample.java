@@ -1,4 +1,4 @@
-
+//
 
 /////////////////////////////////////////////////////////////////
 //IBprogramming dili Java'da OOP (Object-Oriented Programming) //
@@ -37,7 +37,7 @@ public class Student {
 
 package com.example;
 
-import java.util.Scanner;
+/import java.util.Scanner;
 
 class Student {
     public String name;
