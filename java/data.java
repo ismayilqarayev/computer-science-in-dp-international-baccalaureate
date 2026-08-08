@@ -1,3 +1,4 @@
-public class data {
-    
+
+class data {
+
 }
