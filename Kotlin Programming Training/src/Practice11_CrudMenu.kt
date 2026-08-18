@@ -13,6 +13,10 @@
 // Java-dakı ArrayList<Student> əvəzinə Kotlin-də MutableList<Student> işlədilir.
 // "mutableListOf<Student>()" -> boş, dəyişdirilə bilən siyahı yaradır.
 
+// NOT: Ad toqquşmasının (Student və s.) qarşısını almaq üçün hər Practice
+// faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice11
+
 import java.util.Scanner
 
 class Student(

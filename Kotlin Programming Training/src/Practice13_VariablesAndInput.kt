@@ -12,6 +12,10 @@
 //   Kotlin: var name: String    var age: Int    var price: Double
 //   Kotlin-də ƏVVƏLCƏ dəyişənin adı, SONRA ":" işarəsi, SONRA tipi yazılır.
 
+// NOT: Ad toqquşmasının (Student, Product və s.) qarşısını almaq üçün hər
+// Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice13
+
 import java.util.Scanner
 
 class Student {

@@ -6,6 +6,10 @@
 // Bu fayl Practice 6-nın davamıdır — fərq budur ki, PhDStudent məlumatları
 // da sabit yox, istifadəçidən Scanner vasitəsilə alınır.
 
+// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice07
+
 import java.util.Scanner
 
 abstract class Student(

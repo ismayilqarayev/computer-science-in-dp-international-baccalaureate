@@ -13,6 +13,10 @@
 // yəni ayrıca "open" yazmağa ehtiyac yoxdur, abstract sinifdən miras almaq
 // həmişə mümkündür.
 
+// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice06
+
 import java.util.Scanner
 
 abstract class Student(

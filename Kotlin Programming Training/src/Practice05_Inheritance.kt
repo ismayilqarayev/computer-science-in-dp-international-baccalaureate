@@ -13,6 +13,10 @@
 // Bu, Kotlin-in "təhlükəsiz dizayn" fəlsəfəsindən irəli gəlir —
 // təsadüfən səhv yerdə miras almağın qarşısını alır.
 
+// NOT: Ad toqquşmasının (Student, GraduateStudent və s.) qarşısını almaq üçün
+// hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice05
+
 import java.util.Scanner
 
 // "open" -> bu sinifdən miras almaq mümkündür

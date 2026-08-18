@@ -8,6 +8,10 @@
 //   - "private fun" -> yalnız bu fayl daxilində istifadə oluna bilən köməkçi funksiyalar
 //   - while(true) + return ilə "təkrar sual ver, düzgün cavab alana qədər" məntiqi
 
+// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice09
+
 import java.util.Scanner
 
 abstract class Student(

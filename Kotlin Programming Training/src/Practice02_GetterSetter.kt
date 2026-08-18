@@ -8,6 +8,11 @@
 //   - "getX()" adlı metod yazılır (oxumaq üçün)
 //   - "setX(...)" adlı metod yazılır (dəyişmək üçün)
 //
+// NOT: Digər Practice fayllarında da "Student" adlı sinif olduğu üçün
+// ad toqquşmasının (redeclaration) qarşısını almaq məqsədilə hər fayl
+// öz ayrıca "package"-inə yerləşdirilib.
+package practice02
+
 // Kotlin-də bu iş demək olar ki avtomatikdir:
 //   - "var ad: String" yazdıqda Kotlin öz-özünə arxa planda
 //     getter (getAd()) və setter (setAd()) yaradır.

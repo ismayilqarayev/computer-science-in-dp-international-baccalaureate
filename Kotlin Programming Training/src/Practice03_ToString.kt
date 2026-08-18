@@ -3,6 +3,10 @@
 //  (java/Java Practice Programs3.java faylının Kotlin versiyası)
 // ══════════════════════════════════════════════════════════════
 //
+// NOT: Ad toqquşmasının (Student, rename və s.) qarşısını almaq üçün
+// hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice03
+
 // Java-da hər obyektin defolt bir toString() metodu var (Object sinifindən gəlir),
 // amma bu, oxunaqlı deyil (məs: Student@1b6d3586).
 // Ona görə "@Override public String toString()" yazıb öz formatımızı veririk.

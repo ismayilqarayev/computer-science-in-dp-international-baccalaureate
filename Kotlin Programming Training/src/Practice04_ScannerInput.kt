@@ -11,6 +11,10 @@
 // açar sözdür (məs: "for (x in list)"). Ona görə geriyə tərs apostrof (`)
 // içində yazılır: System.`in`
 
+// NOT: Ad toqquşmasının (Student, rename və s.) qarşısını almaq üçün
+// hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice04
+
 import java.util.Scanner
 
 class Student(

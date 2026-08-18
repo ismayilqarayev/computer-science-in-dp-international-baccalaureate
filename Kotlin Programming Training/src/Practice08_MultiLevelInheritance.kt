@@ -13,6 +13,10 @@
 //   3) Inheritance   — GraduateStudent və PhDStudent miras alır
 //   4) Polymorphism  — eyni showInfo() çağırışı, fərqli nəticələr verir
 
+// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
+package practice08
+
 import java.util.Scanner
 
 // Abstrakt sinif — baza rolunu oynayır

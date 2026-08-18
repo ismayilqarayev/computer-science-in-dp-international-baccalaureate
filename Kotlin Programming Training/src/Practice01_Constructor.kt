@@ -14,6 +14,12 @@
 // Kotlin-də isə constructor birbaşa class başlığının içində yazılır —
 // bu, "primary constructor" adlanır və çox vaxt ayrıca kod yazmağa ehtiyac qalmır.
 
+// NOT: Bu faylın öz "package" bloku var. Səbəbi: bu layihədə hər Practice
+// faylında "Student" adlı bənzər siniflər var, əgər hamısı eyni (default) paketdə
+// olsaydı, Kotlin "Redeclaration: class Student" xətası verərdi. Hər fayla ayrıca
+// paket adı verməklə bu siniflər bir-birindən təcrid olunur.
+package practice01
+
 // "class Student(...)" -> mötərizə içindəki hər parametr avtomatik olaraq
 // sinifin bir sahəsinə (property) çevrilir. Java-da bunun üçün
 // həm dəyişən elan etmək, həm constructor yazmaq, həm də this.x = x etmək lazımdır.
