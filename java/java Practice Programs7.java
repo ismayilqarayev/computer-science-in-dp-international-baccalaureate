@@ -1,47 +1,47 @@
-abstract class Student {
+abstract class Telebe {
 
-    private String name;
+    private String ad;
 
-    public Student(String name) {
-        this.name = name;
+    public Telebe(String ad) {
+        this.ad = ad;
     }
 
-    public String getName() {
-        return name;
+    public String getAd() {
+        return ad;
     }
 
-    public abstract void showInfo();
+    public abstract void melumatGoster();
 }
 
-class GraduateStudent extends Student {
+class MagistrTelebe extends Telebe {
 
-    private String university;
+    private String universitet;
 
-    public GraduateStudent(String name, String university) {
-        super(name);
-        this.university = university;
+    public MagistrTelebe(String ad, String universitet) {
+        super(ad);
+        this.universitet = universitet;
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("Graduate Student: " + getName());
-        System.out.println("University: " + university);
+    public void melumatGoster() {
+        System.out.println("Magistr tələbə: " + getAd());
+        System.out.println("Universitet: " + universitet);
     }
 }
 
-class PhDStudent extends Student {
+class DoktorantTelebe extends Telebe {
 
-    private String researchField;
+    private String tedqiqatSahesi;
 
-    public PhDStudent(String name, String researchField) {
-        super(name);
-        this.researchField = researchField;
+    public DoktorantTelebe(String ad, String tedqiqatSahesi) {
+        super(ad);
+        this.tedqiqatSahesi = tedqiqatSahesi;
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("PhD Student: " + getName());
-        System.out.println("Research Field: " + researchField);
+    public void melumatGoster() {
+        System.out.println("Doktorant: " + getAd());
+        System.out.println("Tədqiqat sahəsi: " + tedqiqatSahesi);
     }
 }
 
@@ -51,27 +51,27 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter graduate student name: ");
-        String name = scanner.nextLine();
+        System.out.print("Magistr tələbənin adını daxil edin: ");
+        String ad = scanner.nextLine();
 
-        System.out.print("Enter university: ");
-        String university = scanner.nextLine();
+        System.out.print("Universiteti daxil edin: ");
+        String universitet = scanner.nextLine();
 
-        Student student = new GraduateStudent(name, university);
+        Telebe telebe = new MagistrTelebe(ad, universitet);
 
-        student.showInfo();
+        telebe.melumatGoster();
 
         System.out.println();
 
-        System.out.print("Enter PhD student name: ");
-        String phdName = scanner.nextLine();
+        System.out.print("Doktorantın adını daxil edin: ");
+        String doktorantAdi = scanner.nextLine();
 
-        System.out.print("Enter research field: ");
-        String researchField = scanner.nextLine();
+        System.out.print("Tədqiqat sahəsini daxil edin: ");
+        String tedqiqatSahesi = scanner.nextLine();
 
-        Student phd = new PhDStudent(phdName, researchField);
+        Telebe doktorant = new DoktorantTelebe(doktorantAdi, tedqiqatSahesi);
 
-        phd.showInfo();
+        doktorant.melumatGoster();
 
         scanner.close();
     }

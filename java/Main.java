@@ -1,16 +1,16 @@
-abstract class Student{
-    private String name;
-    private String surname;
-    private String phoneNUmber;
+abstract class Telebe{
+    private String ad;
+    private String soyad;
+    private String telefonNomresi;
     private String email;
-    private int age;
-    private String gender;
+    private int yas;
+    private String cins;
 }
 
 
 
 public class Main{
     public static void main(String[] args) {
-        
+
     }
 }

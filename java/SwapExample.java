@@ -11,23 +11,23 @@ package com.example;
 import java.util.Scanner;
 
 
-public class Student {
-    public String name;
-    public int age;
+public class Telebe {
+    public String ad;
+    public int yas;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Student student = new Student();
+        Telebe telebe = new Telebe();
 
-        System.out.println("Enter your name: ");
-        student.name = sc.nextLine();
+        System.out.println("Adınızı daxil edin: ");
+        telebe.ad = sc.nextLine();
 
         //-------------------------------------------
-        System.out.println("Enter your age: ");
-        student.age = sc.nextInt();
+        System.out.println("Yaşınızı daxil edin: ");
+        telebe.yas = sc.nextInt();
 
         //------------------------------------------
-        System.out.println("Name: " + student.name + " Age: " + student.age);
+        System.out.println("Ad: " + telebe.ad + " Yaş: " + telebe.yas);
         sc.close();
     }
 }
@@ -39,24 +39,24 @@ package com.example;
 
 /import java.util.Scanner;
 
-class Student {
-    public String name;
-    public int age;
+class Telebe {
+    public String ad;
+    public int yas;
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Student st = new Student();
+        Telebe telebe = new Telebe();
 
-        System.out.println("Enter name:");
-        st.name = sc.nextLine();
+        System.out.println("Adı daxil edin:");
+        telebe.ad = sc.nextLine();
 
-        System.out.println("Enter age:");
-        st.age = sc.nextInt();
-        st.age++;
+        System.out.println("Yaşı daxil edin:");
+        telebe.yas = sc.nextInt();
+        telebe.yas++;
 
-        System.out.println("Name: " + st.name);
-        System.out.println("Age: " + st.age);
+        System.out.println("Ad: " + telebe.ad);
+        System.out.println("Yaş: " + telebe.yas);
 
         sc.close();
     }
@@ -69,34 +69,34 @@ package com.example;
 
 import java.util.Scanner;
 
-class Product {
-    public String name;
-    public double price;
+class Mehsul {
+    public String ad;
+    public double qiymet;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Product pr = new Product();
+        Mehsul mehsul = new Mehsul();
 
         // Məhsulun adını daxil edirik
-        System.out.println("Enter product name:");
-        pr.name = sc.nextLine();
+        System.out.println("Məhsulun adını daxil edin:");
+        mehsul.ad = sc.nextLine();
 
         // Məhsulun qiymətini daxil edirik (double tipində)
-        System.out.println("Enter product price:");
-        pr.price = sc.nextDouble();
+        System.out.println("Məhsulun qiymətini daxil edin:");
+        mehsul.qiymet = sc.nextDouble();
 
         // Endirim faizini daxil edirik
-        System.out.println("Enter discount percentage:");
-        double discount = sc.nextDouble();
+        System.out.println("Endirim faizini daxil edin:");
+        double endirimFaizi = sc.nextDouble();
 
         // Endirimdən sonrakı qiyməti hesablayırıq
-        double finalPrice = pr.price - (pr.price * discount / 100);
+        double sonQiymet = mehsul.qiymet - (mehsul.qiymet * endirimFaizi / 100);
 
         // Nəticəni çap edirik
-        System.out.println("Product: " + pr.name);
-        System.out.println("Original Price: " + pr.price);
-        System.out.println("Discount: " + discount + "%");
-        System.out.println("Final Price: " + finalPrice);
+        System.out.println("Məhsul: " + mehsul.ad);
+        System.out.println("Əsas Qiymət: " + mehsul.qiymet);
+        System.out.println("Endirim: " + endirimFaizi + "%");
+        System.out.println("Son Qiymət: " + sonQiymet);
 
         sc.close();
     }
@@ -148,23 +148,23 @@ package com.example;
 import java.util.Scanner;
 
 class Main {
-    boolean number_1 = 
+    boolean eded1 =
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter number 1:");
-        int number_1 = sc.nextInt();
+        System.out.println("1-ci ədədi daxil edin:");
+        int eded1 = sc.nextInt();
 
-        System.out.println("Enter number 2:");
-        int number_2 = sc.nextInt();
+        System.out.println("2-ci ədədi daxil edin:");
+        int eded2 = sc.nextInt();
 
-        boolean result = number_1 > number_2;
+        boolean netice = eded1 > eded2;
 
-        if (result) {
-            System.out.println("Number 1 is bigger");
+        if (netice) {
+            System.out.println("1-ci ədəd daha böyükdür");
         } else {
-            System.out.println("Number 2 is bigger or equal");
+            System.out.println("2-ci ədəd daha böyük və ya bərabərdir");
         }
 
         sc.close();
@@ -182,15 +182,15 @@ class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter number 1:");
-        int number_1 = sc.nextInt();
+        System.out.println("1-ci ədədi daxil edin:");
+        int eded1 = sc.nextInt();
 
-        System.out.println("Enter number 2:");
-        int number_2 = sc.nextInt();
+        System.out.println("2-ci ədədi daxil edin:");
+        int eded2 = sc.nextInt();
 
-        boolean result = (number_1 > 0) && (number_2 > 0);
+        boolean netice = (eded1 > 0) && (eded2 > 0);
 
-        System.out.println("Result (true/false): " + result);
+        System.out.println("Nəticə (true/false): " + netice);
 
         sc.close();
     }
@@ -205,21 +205,21 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        int number_1;
-        int number_2;
+        int eded1;
+        int eded2;
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter number 1:");
-        number_1 = sc.nextInt();
+        System.out.println("1-ci ədədi daxil edin:");
+        eded1 = sc.nextInt();
 
-        System.out.println("Enter number 2:");
-        number_2 = sc.nextInt();
+        System.out.println("2-ci ədədi daxil edin:");
+        eded2 = sc.nextInt();
 
-        if (number_1 > 0 && number_2 > 0) {
-            System.out.println("True: both numbers are positive");
+        if (eded1 > 0 && eded2 > 0) {
+            System.out.println("True: hər iki ədəd müsbətdir");
         } else {
-            System.out.println("False: at least one number is negative or zero");
+            System.out.println("False: ən azı bir ədəd mənfi və ya sıfırdır");
         }
 
         sc.close();
@@ -250,14 +250,14 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-       int number_1 = 5;
-       int number_2 = 7;
+       int eded1 = 5;
+       int eded2 = 7;
 
-       System.out.println("Əvvəl: a = " + number_1 + ", b = " + number_2);
+       System.out.println("Əvvəl: a = " + eded1 + ", b = " + eded2);
 
-       int temp = number_1;
-       number_1 = number_2;
-       number_2 = temp;
+       int temp = eded1;
+       eded1 = eded2;
+       eded2 = temp;
     }
 }
 
@@ -270,24 +270,24 @@ class Main {
         Scanner sc = new Scanner(System.in);
 
         // İstifadəçidən ədədləri daxil etməsini istəyirik
-        System.out.println("Enter number 1:");
-        int number_1 = sc.nextInt();
+        System.out.println("1-ci ədədi daxil edin:");
+        int eded1 = sc.nextInt();
 
-        System.out.println("Enter number 2:");
-        int number_2 = sc.nextInt();
+        System.out.println("2-ci ədədi daxil edin:");
+        int eded2 = sc.nextInt();
 
-        System.out.println("Əvvəl: a = " + number_1 + ", b = " + number_2);
+        System.out.println("Əvvəl: a = " + eded1 + ", b = " + eded2);
 
         // Dəyərləri dəyişmək (swap)
-        int temp = number_1;
-        number_1 = number_2;
-        number_2 = temp;
+        int temp = eded1;
+        eded1 = eded2;
+        eded2 = temp;
 
         // İnkremet əməliyyatı (hər birini 1 vahid artırırıq)
-        number_1++;
-        number_2++;
+        eded1++;
+        eded2++;
 
-        System.out.println("Sonra (swap + increment): a = " + number_1 + ", b = " + number_2);
+        System.out.println("Sonra (swap + increment): a = " + eded1 + ", b = " + eded2);
 
         sc.close();
     }
@@ -301,15 +301,15 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-       int number_1 = 5;
-       int number_2 = 7;
+       int seh1 = 5;
+       int seh2 = 7;
 
-       System.out.println("Əvvəl: a = " + number_1 + ", b = " + number_2);
+       System.out.println("Əvvəl: a = " + seh1 + ", b = " + seh2);
 
-    
-       number_1 = number_2;
-       number_2 = number_1;
-       System.out.println("Sonra: a = " + number_1 + ", b = " + number_2);
+
+       seh1 = seh2;
+       seh2 = seh1;
+       System.out.println("Sonra: a = " + seh1 + ", b = " + seh2);
     }
 }
 

@@ -3,79 +3,79 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-class Student {
+class Telebe {
 
-    private String name;
+    private String ad;
 
-    public Student(String name){
-        this.name = name;
+    public Telebe(String ad){
+        this.ad = ad;
     }
 
-    public String getName(){
-        return name;
+    public String getAd(){
+        return ad;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setAd(String ad){
+        this.ad = ad;
     }
 
     @Override
     public String toString(){
-        return name;
+        return ad;
     }
 }
 
 public class Main {
 
-    static List<Student> students = new ArrayList<>();
+    static List<Telebe> telebeler = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
 
     // tələbə əlavə etmək
-    public static void addStudent(){
+    public static void telebeElaveEt(){
         System.out.print("Tələbə adı daxil edin: ");
-        String name = scanner.nextLine();
+        String ad = scanner.nextLine();
 
-        students.add(new Student(name));
+        telebeler.add(new Telebe(ad));
         System.out.println("Tələbə əlavə edildi.");
     }
 
     // tələbələri göstərmək
-    public static void showStudents(){
+    public static void telebeleriGoster(){
 
-        if(students.isEmpty()){
+        if(telebeler.isEmpty()){
             System.out.println("Tələbə yoxdur.");
             return;
         }
 
-        for(int i = 0; i < students.size(); i++){
-            System.out.println(i + " - " + students.get(i));
+        for(int i = 0; i < telebeler.size(); i++){
+            System.out.println(i + " - " + telebeler.get(i));
         }
     }
 
     // ad dəyişmək
-    public static void renameStudent(){
-        showStudents();
+    public static void adDeyis(){
+        telebeleriGoster();
 
         System.out.print("İndeks daxil edin: ");
-        int index = scanner.nextInt();
+        int indeks = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Yeni ad daxil edin: ");
-        String newName = scanner.nextLine();
+        String yeniAd = scanner.nextLine();
 
-        students.get(index).setName(newName);
+        telebeler.get(indeks).setAd(yeniAd);
         System.out.println("Ad dəyişdirildi.");
     }
 
     // tələbə silmək
-    public static void removeStudent(){
-        showStudents();
+    public static void telebeSil(){
+        telebeleriGoster();
 
         System.out.print("Silinəcək indeks: ");
-        int index = scanner.nextInt();
+        int indeks = scanner.nextInt();
         scanner.nextLine();
 
-        students.remove(index);
+        telebeler.remove(indeks);
         System.out.println("Tələbə silindi.");
     }
 
@@ -90,25 +90,25 @@ public class Main {
             System.out.println("0 - Çıxış");
 
             System.out.print("Seçim: ");
-            int choice = scanner.nextInt();
+            int secim = scanner.nextInt();
             scanner.nextLine();
 
-            switch(choice){
+            switch(secim){
 
                 case 1:
-                    addStudent();
+                    telebeElaveEt();
                     break;
 
                 case 2:
-                    showStudents();
+                    telebeleriGoster();
                     break;
 
                 case 3:
-                    renameStudent();
+                    adDeyis();
                     break;
 
                 case 4:
-                    removeStudent();
+                    telebeSil();
                     break;
 
                 case 0:

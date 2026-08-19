@@ -1,43 +1,43 @@
-class Student {
+class Telebe {
 
-    private String name;
+    private String ad;
 
-    public Student(String name){
-        this.name = name;
+    public Telebe(String ad){
+        this.ad = ad;
     }
 
-    public String getName(){
-        return name;
+    public String getAd(){
+        return ad;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setAd(String ad){
+        this.ad = ad;
     }
 
     @Override
     public String toString(){
-        return name;
+        return ad;
     }
 }
 
 public class Main {
-    public static void rename(Student student, String newname){
-        student.setName(newname);
+    public static void adiDeyis(Telebe telebe, String yeniAd){
+        telebe.setAd(yeniAd);
     }
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Enter the name of the student: ");
-        String StudentName = scanner.nextLine();
 
-        Student student = new Student(StudentName);
-        System.out.println("Current name: " + student);
+        System.out.print("Tələbənin adını daxil edin: ");
+        String telebeAdi = scanner.nextLine();
 
-        System.out.print("Enter the new name of the student: ");
-        String newName = scanner.nextLine();
+        Telebe telebe = new Telebe(telebeAdi);
+        System.out.println("Hazırkı ad: " + telebe);
 
-        rename(student, newName);
-        System.out.println("New name: " + student);
+        System.out.print("Tələbənin yeni adını daxil edin: ");
+        String yeniAd = scanner.nextLine();
+
+        adiDeyis(telebe, yeniAd);
+        System.out.println("Yeni ad: " + telebe);
     }
 }

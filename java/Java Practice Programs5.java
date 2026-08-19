@@ -1,47 +1,47 @@
-// Base class  
-class Student {
+// Base class
+class Telebe {
 
-    private String name;
+    private String ad;
 
-    public Student(String name) {
-        this.name = name;
+    public Telebe(String ad) {
+        this.ad = ad;
     }
 
-    public String getName() {
-        return name;
+    public String getAd() {
+        return ad;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAd(String ad) {
+        this.ad = ad;
     }
 
-    public void showInfo() {
-        System.out.println("Student name: " + name);
+    public void melumatGoster() {
+        System.out.println("Tələbənin adı: " + ad);
     }
 }
 
 // Derived class
-class GraduateStudent extends Student {
+class MagistrTelebe extends Telebe {
 
-    private String university;
+    private String universitet;
 
-    public GraduateStudent(String name, String university) {
-        super(name); // parent constructor
-        this.university = university;
+    public MagistrTelebe(String ad, String universitet) {
+        super(ad); // parent constructor
+        this.universitet = universitet;
     }
 
-    public String getUniversity() {
-        return university;
+    public String getUniversitet() {
+        return universitet;
     }
 
-    public void setUniversity(String university) {
-        this.university = university;
+    public void setUniversitet(String universitet) {
+        this.universitet = universitet;
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("Student name: " + getName());
-        System.out.println("University: " + university);
+    public void melumatGoster() {
+        System.out.println("Tələbənin adı: " + getAd());
+        System.out.println("Universitet: " + universitet);
     }
 }
 
@@ -51,15 +51,15 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter student name: ");
-        String name = scanner.nextLine();
+        System.out.print("Tələbənin adını daxil edin: ");
+        String ad = scanner.nextLine();
 
-        System.out.print("Enter university: ");
-        String university = scanner.nextLine();
+        System.out.print("Universiteti daxil edin: ");
+        String universitet = scanner.nextLine();
 
-        GraduateStudent student = new GraduateStudent(name, university);
+        MagistrTelebe telebe = new MagistrTelebe(ad, universitet);
 
-        student.showInfo();
+        telebe.melumatGoster();
 
         scanner.close();
     }

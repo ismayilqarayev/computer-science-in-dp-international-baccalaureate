@@ -1,10 +1,10 @@
 
-// Student sinfi: bir tələbə obyekti üçün sahələr və metodlar
-class Student {
+// Telebe sinfi: bir tələbə obyekti üçün sahələr və metodlar
+class Telebe {
     private String ad;  // ad sahəsi private, birbaşa xaricdən giriş yoxdur (inkapsulyasiya)
 
-    // Konstruktor: yeni Student obyekti yaratmaq üçün istifadə olunur
-    Student(String ad) {
+    // Konstruktor: yeni Telebe obyekti yaratmaq üçün istifadə olunur
+    Telebe(String ad) {
         this.ad = ad;  // sahəni konstruktor parametri ilə doldururuq
     }
 
@@ -21,17 +21,17 @@ class Student {
 
 public class Main {
     // Metod obyekt qəbul edir və obyektin ad sahəsini dəyişdirir
-    static void adDeyis(Student s, String yeniAd) {
-        s.setAd(yeniAd);  // student obyektinin ad sahəsini dəyişdiririk
+    static void adDeyis(Telebe t, String yeniAd) {
+        t.setAd(yeniAd);  // telebe obyektinin ad sahəsini dəyişdiririk
     }
 
     public static void main(String[] args) {
-        // Yeni Student obyekti yaradılır
-        Student s1 = new Student("Ravan");  
-        System.out.println("Əvvəl: " + s1.getAd()); // Getter vasitəsilə adı ekrana çıxarır
+        // Yeni Telebe obyekti yaradılır
+        Telebe telebe1 = new Telebe("Ravan");
+        System.out.println("Əvvəl: " + telebe1.getAd()); // Getter vasitəsilə adı ekrana çıxarır
 
         // Metod vasitəsilə obyektin adını dəyişdiririk
-        adDeyis(s1, "Ismayil");  
-        System.out.println("Sonra: " + s1.getAd()); // Yenilənmiş ad ekrana çıxarılır
+        adDeyis(telebe1, "Ismayil");
+        System.out.println("Sonra: " + telebe1.getAd()); // Yenilənmiş ad ekrana çıxarılır
     }
 }

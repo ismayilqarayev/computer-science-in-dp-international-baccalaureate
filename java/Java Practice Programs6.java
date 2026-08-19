@@ -1,54 +1,54 @@
 
 
-//Abtract class Student 
+//Abtract class Telebe
 // Abstrakt sinif - birbaşa obyekt yaradıla bilməz,
 //  yalnız miras almaq üçün istifadə olunur
 
 
-abstract class Student {
+abstract class Telebe {
 
-    private String name;
+    private String ad;
 
-    public Student(String name) {
-        this.name = name;
+    public Telebe(String ad) {
+        this.ad = ad;
     }
 
-    public String getName() {
-        return name;
+    public String getAd() {
+        return ad;
     }
 
-    public abstract void showInfo();
+    public abstract void melumatGoster();
 }
 
-class GraduateStudent extends Student {
+class MagistrTelebe extends Telebe {
 
-    private String university;
+    private String universitet;
 
-    public GraduateStudent(String name, String university) {
-        super(name);
-        this.university = university;
+    public MagistrTelebe(String ad, String universitet) {
+        super(ad);
+        this.universitet = universitet;
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("Graduate Student: " + getName());
-        System.out.println("University: " + university);
+    public void melumatGoster() {
+        System.out.println("Magistr tələbə: " + getAd());
+        System.out.println("Universitet: " + universitet);
     }
 }
 
-class PhDStudent extends Student {
+class DoktorantTelebe extends Telebe {
 
-    private String researchField;
+    private String tedqiqatSahesi;
 
-    public PhDStudent(String name, String researchField) {
-        super(name);
-        this.researchField = researchField;
+    public DoktorantTelebe(String ad, String tedqiqatSahesi) {
+        super(ad);
+        this.tedqiqatSahesi = tedqiqatSahesi;
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("PhD Student: " + getName());
-        System.out.println("Research Field: " + researchField);
+    public void melumatGoster() {
+        System.out.println("Doktorant: " + getAd());
+        System.out.println("Tədqiqat sahəsi: " + tedqiqatSahesi);
     }
 }
 
@@ -58,21 +58,21 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter student name: ");
-        String name = scanner.nextLine();
+        System.out.print("Tələbənin adını daxil edin: ");
+        String ad = scanner.nextLine();
 
-        System.out.print("Enter university: ");
-        String university = scanner.nextLine();
+        System.out.print("Universiteti daxil edin: ");
+        String universitet = scanner.nextLine();
 
-        Student student = new GraduateStudent(name, university);
+        Telebe telebe = new MagistrTelebe(ad, universitet);
 
-        student.showInfo();
+        telebe.melumatGoster();
 
         System.out.println();
 
-        Student phd = new PhDStudent("Nigar", "Artificial Intelligence");
+        Telebe doktorant = new DoktorantTelebe("Nigar", "Süni İntellekt");
 
-        phd.showInfo();
+        doktorant.melumatGoster();
 
         scanner.close();
     }

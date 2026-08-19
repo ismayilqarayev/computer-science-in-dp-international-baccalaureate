@@ -3,33 +3,33 @@ import java.util.Scanner;
 // Abstrakt sinif (Abstraction)
 // Bu sinif birbaşa obyekt yaratmaq üçün deyil,
 // digər siniflər üçün baza rolunu oynayır
-abstract class Student {
+abstract class Telebe {
 
     // Encapsulation (İnkapsulyasiya)
-    private String name;
-    private String surname;
-    private String phoneNumber;
+    private String ad;
+    private String soyad;
+    private String telefonNomresi;
     private String email;
 
     // Konstruktor — sinif yaradılarkən sahələr mənimsədilir
-    public Student(String name, String surname, String phoneNumber, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.phoneNumber = phoneNumber;
+    public Telebe(String ad, String soyad, String telefonNomresi, String email) {
+        this.ad = ad;
+        this.soyad = soyad;
+        this.telefonNomresi = telefonNomresi;
         this.email = email;
     }
 
     // Getter-lər — sahə dəyərlərini oxumaq üçün
-    public String getName() {
-        return name;
+    public String getAd() {
+        return ad;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSoyad() {
+        return soyad;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getTelefonNomresi() {
+        return telefonNomresi;
     }
 
     public String getEmail() {
@@ -37,16 +37,16 @@ abstract class Student {
     }
 
     // Setter-lər — sahə dəyərlərini dəyişmək üçün
-    public void setName(String name) {
-        this.name = name;
+    public void setAd(String ad) {
+        this.ad = ad;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSoyad(String soyad) {
+        this.soyad = soyad;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setTelefonNomresi(String telefonNomresi) {
+        this.telefonNomresi = telefonNomresi;
     }
 
     public void setEmail(String email) {
@@ -54,55 +54,55 @@ abstract class Student {
     }
 
     // Abstrakt metod — hər alt sinif öz implementasiyasını yazmalıdır
-    public abstract void showInfo();
+    public abstract void melumatGoster();
 }
 
 // Inheritance (İrsiyyət)
-// GraduateStudent sinifi Student sinifindən miras alır
-class GraduateStudent extends Student {
+// MagistrTelebe sinifi Telebe sinifindən miras alır
+class MagistrTelebe extends Telebe {
 
     // Bu sinifə məxsus sahə — universitetin adı
-    private String university;
+    private String universitet;
 
-    // Konstruktor — name, surname, phone və email Student-ə,
-    // university isə bu sinifə mənimsədilir
-    public GraduateStudent(String name, String surname, String phoneNumber, String email, String university) {
-        super(name, surname, phoneNumber, email);
-        this.university = university;
+    // Konstruktor — ad, soyad, telefon və email Telebe-yə,
+    // universitet isə bu sinifə mənimsədilir
+    public MagistrTelebe(String ad, String soyad, String telefonNomresi, String email, String universitet) {
+        super(ad, soyad, telefonNomresi, email);
+        this.universitet = universitet;
     }
 
     // Abstrakt metodun implementasiyası (Polymorphism)
-    // Student sinifindəki showInfo() burada konkret şəkildə yazılır
+    // Telebe sinifindəki melumatGoster() burada konkret şəkildə yazılır
     @Override
-    public void showInfo() {
-        System.out.println("Name: " + getName() + " " + getSurname());
-        System.out.println("Phone: " + getPhoneNumber());
+    public void melumatGoster() {
+        System.out.println("Ad: " + getAd() + " " + getSoyad());
+        System.out.println("Telefon: " + getTelefonNomresi());
         System.out.println("Email: " + getEmail());
-        System.out.println("University: " + university);
+        System.out.println("Universitet: " + universitet);
     }
 }
 
 // Inheritance (İrsiyyət)
-// PhDStudent sinifi GraduateStudent sinifindən miras alır
-// Beləliklə Student → GraduateStudent → PhDStudent zənciri yaranır
-class PhDStudent extends GraduateStudent {
+// DoktorantTelebe sinifi MagistrTelebe sinifindən miras alır
+// Beləliklə Telebe → MagistrTelebe → DoktorantTelebe zənciri yaranır
+class DoktorantTelebe extends MagistrTelebe {
 
     // Bu sinifə məxsus sahə — tədqiqat mövzusu
-    private String researchTopic;
+    private String tedqiqatMovzusu;
 
-    // Konstruktor — name, surname, phone və email parent-ə ötürülür,
-    // university və researchTopic isə bu siniflərə mənimsədilir
-    public PhDStudent(String name, String surname, String phoneNumber, String email, String university, String researchTopic) {
-        super(name, surname, phoneNumber, email, university);
-        this.researchTopic = researchTopic;
+    // Konstruktor — ad, soyad, telefon və email parent-ə ötürülür,
+    // universitet və tedqiqatMovzusu isə bu siniflərə mənimsədilir
+    public DoktorantTelebe(String ad, String soyad, String telefonNomresi, String email, String universitet, String tedqiqatMovzusu) {
+        super(ad, soyad, telefonNomresi, email, universitet);
+        this.tedqiqatMovzusu = tedqiqatMovzusu;
     }
 
     // Method Overriding (Polymorphism)
-    // GraduateStudent-dəki showInfo() genişləndirilir
+    // MagistrTelebe-dəki melumatGoster() genişləndirilir
     @Override
-    public void showInfo() {
-        super.showInfo();
-        System.out.println("Research Topic: " + researchTopic);
+    public void melumatGoster() {
+        super.melumatGoster();
+        System.out.println("Tədqiqat mövzusu: " + tedqiqatMovzusu);
     }
 }
 
@@ -111,78 +111,78 @@ public class Main {
 
         try (Scanner scanner = new Scanner(System.in)) {
 
-            // ── Graduate Student məlumatlarının daxil edilməsi ──────────────
-            System.out.println("Graduate student data entry:");
-            String gsName = readNonEmptyInput(scanner, "Enter the name of the graduate student: ");
-            String gsSurname = readNonEmptyInput(scanner, "Enter the surname of the graduate student: ");
-            String gsPhone = readValidPhone(scanner, "Enter the phone number of the graduate student: ");
-            String gsEmail = readValidEmail(scanner, "Enter the email of the graduate student: ");
-            String gsUniversity = readNonEmptyInput(scanner, "Enter the university of the graduate student: ");
+            // ── Magistr tələbə məlumatlarının daxil edilməsi ──────────────
+            System.out.println("Magistr tələbə məlumatlarının daxil edilməsi:");
+            String mAd = readNonEmptyInput(scanner, "Magistr tələbənin adını daxil edin: ");
+            String mSoyad = readNonEmptyInput(scanner, "Magistr tələbənin soyadını daxil edin: ");
+            String mTelefon = readValidPhone(scanner, "Magistr tələbənin telefon nömrəsini daxil edin: ");
+            String mEmail = readValidEmail(scanner, "Magistr tələbənin emailini daxil edin: ");
+            String mUniversitet = readNonEmptyInput(scanner, "Magistr tələbənin universitetini daxil edin: ");
 
-            Student graduateStudent = new GraduateStudent(gsName, gsSurname, gsPhone, gsEmail, gsUniversity);
+            Telebe magistrTelebe = new MagistrTelebe(mAd, mSoyad, mTelefon, mEmail, mUniversitet);
             System.out.println();
-            graduateStudent.showInfo();
+            magistrTelebe.melumatGoster();
 
-            // ── PhD Student məlumatlarının daxil edilməsi ───────────────────
+            // ── Doktorant məlumatlarının daxil edilməsi ───────────────────
             System.out.println();
-            System.out.println("PhD student data entry:");
-            String phdName = readNonEmptyInput(scanner, "Enter the name of the PhD student: ");
-            String phdSurname = readNonEmptyInput(scanner, "Enter the surname of the PhD student: ");
-            String phdPhone = readValidPhone(scanner, "Enter the phone number of the PhD student: ");
-            String phdEmail = readValidEmail(scanner, "Enter the email of the PhD student: ");
-            String phdUniversity = readNonEmptyInput(scanner, "Enter the university of the PhD student: ");
-            String phdResearchTopic = readNonEmptyInput(scanner, "Enter the research topic of the PhD student: ");
+            System.out.println("Doktorant məlumatlarının daxil edilməsi:");
+            String dAd = readNonEmptyInput(scanner, "Doktorantın adını daxil edin: ");
+            String dSoyad = readNonEmptyInput(scanner, "Doktorantın soyadını daxil edin: ");
+            String dTelefon = readValidPhone(scanner, "Doktorantın telefon nömrəsini daxil edin: ");
+            String dEmail = readValidEmail(scanner, "Doktorantın emailini daxil edin: ");
+            String dUniversitet = readNonEmptyInput(scanner, "Doktorantın universitetini daxil edin: ");
+            String dTedqiqatMovzusu = readNonEmptyInput(scanner, "Doktorantın tədqiqat mövzusunu daxil edin: ");
 
-            Student phdStudent = new PhDStudent(phdName, phdSurname, phdPhone, phdEmail, phdUniversity, phdResearchTopic);
+            Telebe doktorantTelebe = new DoktorantTelebe(dAd, dSoyad, dTelefon, dEmail, dUniversitet, dTedqiqatMovzusu);
             System.out.println();
-            phdStudent.showInfo();
+            doktorantTelebe.melumatGoster();
 
         }
     }
 
-    private static String readNonEmptyInput(Scanner scanner, String prompt) {
+    private static String readNonEmptyInput(Scanner scanner, String sual) {
         while (true) {
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
-            if (!input.isEmpty()) {
-                return input;
+            System.out.print(sual);
+            String giris = scanner.nextLine().trim();
+            if (!giris.isEmpty()) {
+                return giris;
             }
-            System.out.println("Invalid entry: this field cannot be empty. Please enter a valid value.");
+            System.out.println("Yanlış giriş: bu sahə boş ola bilməz. Zəhmət olmasa düzgün dəyər daxil edin.");
         }
     }
 
-    private static String readValidPhone(Scanner scanner, String prompt) {
+    private static String readValidPhone(Scanner scanner, String sual) {
         while (true) {
-            System.out.print(prompt);
-            String phone = scanner.nextLine().trim();
-            if (phone.isEmpty()) {
-                System.out.println("Invalid entry: phone number cannot be empty.");
+            System.out.print(sual);
+            String telefon = scanner.nextLine().trim();
+            if (telefon.isEmpty()) {
+                System.out.println("Yanlış giriş: telefon nömrəsi boş ola bilməz.");
                 continue;
             }
-            if (isValidPhone(phone)) {
-                return phone;
+            if (isValidPhone(telefon)) {
+                return telefon;
             }
-            System.out.println("Invalid phone number. Use digits, spaces, dashes, and optional leading +.");
+            System.out.println("Yanlış telefon nömrəsi. Rəqəm, boşluq, tire və istəyə görə \"+\" işlədin.");
         }
     }
 
-    private static String readValidEmail(Scanner scanner, String prompt) {
+    private static String readValidEmail(Scanner scanner, String sual) {
         while (true) {
-            System.out.print(prompt);
+            System.out.print(sual);
             String email = scanner.nextLine().trim();
             if (email.isEmpty()) {
-                System.out.println("Invalid entry: email cannot be empty.");
+                System.out.println("Yanlış giriş: email boş ola bilməz.");
                 continue;
             }
             if (isValidEmail(email)) {
                 return email;
             }
-            System.out.println("Invalid email format. Example: user@example.com");
+            System.out.println("Yanlış email formatı. Nümunə: istifadeci@example.com");
         }
     }
 
-    private static boolean isValidPhone(String phone) {
-        return phone.matches("^\\+?[0-9\\-\\s]{7,20}$");
+    private static boolean isValidPhone(String telefon) {
+        return telefon.matches("^\\+?[0-9\\-\\s]{7,20}$");
     }
 
     private static boolean isValidEmail(String email) {
