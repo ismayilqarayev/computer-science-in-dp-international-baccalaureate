@@ -16,19 +16,19 @@
 # məlumatları (sahələri) və hansı davranışları (metodları) olacağını
 # əvvəlcədən planlaşdıran bir "qəlib" və ya "çertyoj"dur.
 #
-# Analogiya: "Student" sinfi ev tikmək üçün olan LAYİHƏ çertyojuna bənzəyir.
+# Analogiya: "Telebe" sinfi ev tikmək üçün olan LAYİHƏ çertyojuna bənzəyir.
 # Çertyojun özü ev deyil — ondan istifadə edərək çoxlu sayda konkret ev
 # (yəni konkret tələbə obyekti) tikə bilərik. Hər ev fərqli ünvanda,
-# fərqli rəngdə ola bilər — eynilə hər Student obyektinin də fərqli
+# fərqli rəngdə ola bilər — eynilə hər Telebe obyektinin də fərqli
 # adı və yaşı ola bilər.
 # --------------------------------------------------------------------------
-class Student:
+class Telebe:
 
     # ------------------------------------------------------------------
     # __init__ metodu — KONSTRUKTORdur.
     #
     # "Konstruktor" sözünün mənası: "qurucu, tikən". Bu metod məhz
-    # Student(...) formasında yeni bir obyekt yaradılan zaman Python
+    # Telebe(...) formasında yeni bir obyekt yaradılan zaman Python
     # tərəfindən AVTOMATİK olaraq, bir dəfə çağırılır. Bizim onu əl ilə
     # çağırmağımıza ehtiyac yoxdur.
     #
@@ -43,23 +43,23 @@ class Student:
     #          Python-da isə "self" HƏR metodun BİRİNCİ parametri kimi
     #          açıq şəkildə yazılmalıdır (adı məcburi "self" olmasa da,
     #          ümumi qəbul edilmiş razılaşmadır).
-    #   name — konstruktora ötürülən tələbənin adı (string/mətn tipində)
-    #   age  — konstruktora ötürülən tələbənin yaşı (int/tam ədəd tipində)
+    #   ad  — konstruktora ötürülən tələbənin adı (string/mətn tipində)
+    #   yas — konstruktora ötürülən tələbənin yaşı (int/tam ədəd tipində)
     # ------------------------------------------------------------------
-    def __init__(self, name, age):
-        # self.name = name  --> bu sətir YENİ bir sahə (atribut) yaradır.
-        # Sol tərəfdəki "self.name" — yaradılan konkret obyektin daxilində
-        # saxlanılacaq yaddaş "qutusudur". Sağ tərəfdəki "name" isə
+    def __init__(self, ad, yas):
+        # self.ad = ad  --> bu sətir YENİ bir sahə (atribut) yaradır.
+        # Sol tərəfdəki "self.ad" — yaradılan konkret obyektin daxilində
+        # saxlanılacaq yaddaş "qutusudur". Sağ tərəfdəki "ad" isə
         # konstruktora bayaq ötürülən PARAMETRDİR.
-        # Diqqət: adları eynidir (ikisi də "name"), amma onlar TAMAM
+        # Diqqət: adları eynidir (ikisi də "ad"), amma onlar TAMAM
         # FƏRQLİ ŞEYLƏRDİR — biri parametr (müvəqqəti), digəri isə
         # obyektin daimi yaddaşında saxlanan sahədir.
-        self.name = name
+        self.ad = ad
 
-        # Eyni məntiqlə "age" parametri obyektin "age" sahəsinə yazılır.
-        # Bundan sonra bu obyekt "yaşayır" — yəni "age" sahəsi bu obyektlə
+        # Eyni məntiqlə "yas" parametri obyektin "yas" sahəsinə yazılır.
+        # Bundan sonra bu obyekt "yaşayır" — yəni "yas" sahəsi bu obyektlə
         # birlikdə yaddaşda saxlanılır, obyekt silinənə qədər orada qalır.
-        self.age = age
+        self.yas = yas
 
 
 # --------------------------------------------------------------------------
@@ -69,23 +69,23 @@ class Student:
 # obyekt qəbul edir).
 #
 # Parametr:
-#   s — Student tipli bir obyekt (İDEAL olaraq, texniki cəhətdən Python
+#   t — Telebe tipli bir obyekt (İDEAL olaraq, texniki cəhətdən Python
 #       tip yoxlaması məcburi etmir, amma məntiqən belə istifadə nəzərdə
 #       tutulub)
 # --------------------------------------------------------------------------
-def print_student(s):
-    # s -> funksiyaya göndərilən konkret Student obyektinin özüdür.
-    # Bu, "referensdir" — yəni s dəyişəni obyektin özünü yox, obyektin
+def telebe_goster(t):
+    # t -> funksiyaya göndərilən konkret Telebe obyektinin özüdür.
+    # Bu, "referensdir" — yəni t dəyişəni obyektin özünü yox, obyektin
     # yaddaşdakı ünvanını saxlayır (Java-dakı obyekt referensləri kimi).
     #
-    # s.name -> nöqtə (.) operatoru ilə obyektin "name" sahəsinə müraciət
-    # edirik. Bu, "s obyektinin içindəki name-i mənə ver" deməkdir.
-    # s.age  -> eyni məntiqlə "age" sahəsinə müraciət.
+    # t.ad -> nöqtə (.) operatoru ilə obyektin "ad" sahəsinə müraciət
+    # edirik. Bu, "t obyektinin içindəki adı mənə ver" deməkdir.
+    # t.yas -> eyni məntiqlə "yas" sahəsinə müraciət.
     #
     # print(a, b) — Python-un daxili funksiyasıdır, verilən bütün
     # dəyərləri ARALARINDA BOŞLUQ qoyaraq bir sətirdə ekrana çıxarır və
     # sonda avtomatik yeni sətrə keçir (\n əlavə edir).
-    print(s.name, s.age)
+    print(t.ad, t.yas)
 
 
 # --------------------------------------------------------------------------
@@ -96,20 +96,20 @@ def print_student(s):
 # main() adlı funksiyanın içinə yığmaq YAXŞI PRAKTİKA sayılır.
 # --------------------------------------------------------------------------
 def main():
-    # Yeni Student obyekti yaradılır.
-    # "Student("Ravan", 12)" yazıldıqda arxa planda baş verənlər:
-    #   1) Yaddaşda yeni, boş bir Student "qutusu" ayrılır
+    # Yeni Telebe obyekti yaradılır.
+    # "Telebe("Ravan", 12)" yazıldıqda arxa planda baş verənlər:
+    #   1) Yaddaşda yeni, boş bir Telebe "qutusu" ayrılır
     #   2) Bu qutunun "self" olaraq __init__ metoduna avtomatik ötürülür
-    #   3) "Ravan" -> name parametrinə, 12 -> age parametrinə düşür
-    #   4) __init__ daxilində self.name = "Ravan", self.age = 12 olaraq
+    #   3) "Ravan" -> ad parametrinə, 12 -> yas parametrinə düşür
+    #   4) __init__ daxilində self.ad = "Ravan", self.yas = 12 olaraq
     #      sahələr doldurulur
-    #   5) Hazır olan bu obyekt "st" adlı dəyişənə mənimsədilir
-    st = Student("Ravan", 12)
+    #   5) Hazır olan bu obyekt "telebe" adlı dəyişənə mənimsədilir
+    telebe = Telebe("Ravan", 12)
 
-    # print_student funksiyası çağırılır, "st" obyekti ona parametr kimi
-    # ötürülür. Funksiya daxilində bu eyni obyekt "s" adı ilə istifadə olunur
+    # telebe_goster funksiyası çağırılır, "telebe" obyekti ona parametr kimi
+    # ötürülür. Funksiya daxilində bu eyni obyekt "t" adı ilə istifadə olunur
     # (dəyişənin adı fərqlidir, amma yaddaşdakı OBYEKT eynidir).
-    print_student(st)
+    telebe_goster(telebe)
 
 
 # --------------------------------------------------------------------------

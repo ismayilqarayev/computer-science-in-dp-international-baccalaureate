@@ -7,27 +7,27 @@
 #    3) Sinif metodunu başqa funksiyaya ötürüb polymorphism-ə hazırlıq
 # ============================================================================
 
-class Student:
+class Telebe:
 
     # Konstruktor — obyekt yaradılarkən adı təyin edir
-    def __init__(self, name):
-        # "_name" — encapsulation üçün "daxili" sahə (bax: Practice 2-dəki izah)
-        self._name = name
+    def __init__(self, ad):
+        # "_ad" — encapsulation üçün "daxili" sahə (bax: Practice 2-dəki izah)
+        self._ad = ad
 
-    # Getter — name sahəsini oxumaq üçün
-    def get_name(self):
-        return self._name
+    # Getter — ad sahəsini oxumaq üçün
+    def get_ad(self):
+        return self._ad
 
-    # Setter — name sahəsini dəyişmək üçün
-    def set_name(self, name):
-        self._name = name
+    # Setter — ad sahəsini dəyişmək üçün
+    def set_ad(self, ad):
+        self._ad = ad
 
     # ------------------------------------------------------------
     # __str__ — Python-un DAHA BİR xüsusi (magic/dunder) metodudur.
     #
     # NORMALDA, əgər bir sinifdə __str__ metodu YAZILMASAYDI, "print(obyekt)"
     # yazdıqda ekranda bu cür bir şey görərdik:
-    #     <__main__.Student object at 0x000001A2B3C4D5E6>
+    #     <__main__.Telebe object at 0x000001A2B3C4D5E6>
     # Yəni obyektin yaddaşdakı texniki ünvanı — bu, insan üçün faydasız
     # bir məlumatdır.
     #
@@ -44,36 +44,36 @@ class Student:
     def __str__(self):
         # "+" operatoru burada İKİ MƏTNİ (string) BİRLƏŞDİRMƏK üçün
         # istifadə olunur (Java-dakı "+" ilə string concatenation eynidir)
-        return "Student name: " + self._name
+        return "Tələbənin adı: " + self._ad
 
 
 # --------------------------------------------------------------------------
-# rename — Student obyektini qəbul edib adını dəyişən funksiya.
-# Bu funksiya İSTƏNİLƏN Student-tipli obyektlə işləyə bilər — bu,
+# adi_deyis — Telebe obyektini qəbul edib adını dəyişən funksiya.
+# Bu funksiya İSTƏNİLƏN Telebe-tipli obyektlə işləyə bilər — bu,
 # Polymorphism-in sadə bir formasıdır: eyni funksiya müxtəlif
-# obyektlərlə (hətta Student-dən miras alan alt siniflərin obyektləri
-# ilə də) işləyə bilər, çünki hamısında set_name() metodu mövcuddur.
+# obyektlərlə (hətta Telebe-dən miras alan alt siniflərin obyektləri
+# ilə də) işləyə bilər, çünki hamısında set_ad() metodu mövcuddur.
 # --------------------------------------------------------------------------
-def rename(student, new_name):
-    student.set_name(new_name)
+def adi_deyis(telebe, yeni_ad):
+    telebe.set_ad(yeni_ad)
 
 
 def main():
     # Yeni obyekt yaradılır, "John" adı ilə
-    student1 = Student("John")
+    telebe1 = Telebe("John")
 
-    # print(student1) çağırıldıqda Python arxa planda AVTOMATİK olaraq
-    # student1.__str__() metodunu çağırır və onun qaytardığı mətni çap edir.
-    # Nəticədə ekranda: "Student name: John" görünəcək.
-    print(student1)
+    # print(telebe1) çağırıldıqda Python arxa planda AVTOMATİK olaraq
+    # telebe1.__str__() metodunu çağırır və onun qaytardığı mətni çap edir.
+    # Nəticədə ekranda: "Tələbənin adı: John" görünəcək.
+    print(telebe1)
 
-    # rename funksiyası çağırılır — student1 obyektinin "_name" sahəsi
+    # adi_deyis funksiyası çağırılır — telebe1 obyektinin "_ad" sahəsi
     # "Doe" olaraq dəyişdirilir (setter vasitəsilə)
-    rename(student1, "Doe")
+    adi_deyis(telebe1, "Doe")
 
-    # Yenidən print(student1) — bu dəfə __str__ yenilənmiş adı qaytaracaq:
-    # "Student name: Doe"
-    print(student1)
+    # Yenidən print(telebe1) — bu dəfə __str__ yenilənmiş adı qaytaracaq:
+    # "Tələbənin adı: Doe"
+    print(telebe1)
 
 
 if __name__ == "__main__":

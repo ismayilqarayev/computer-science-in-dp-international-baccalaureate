@@ -20,18 +20,18 @@ from abc import ABC
 # Bu, orijinal Java kodundakı vəziyyətin EYNİ İLƏ köçürülməsidir —
 # "abstract" açar sözü var idi, amma "abstract" metod yox idi.
 # --------------------------------------------------------------------------
-class Student(ABC):
+class Telebe(ABC):
     def __init__(self):
         # Bu sahələr hələ HEÇ YERDƏ istifadə olunmur — sadəcə
         # gələcəkdə bu sinifin HANSI MƏLUMATLARI SAXLAYACAĞININ
         # planını göstərir. Hamısına "None" (Java-dakı "null" ilə
         # eyni məna daşıyır — "hələ heç bir dəyər verilməyib") verilib.
-        self.name = None
-        self.surname = None
-        self.phone_number = None
+        self.ad = None
+        self.soyad = None
+        self.telefon_nomresi = None
         self.email = None
-        self.age = None
-        self.gender = None
+        self.yas = None
+        self.cins = None
 
 
 def main():

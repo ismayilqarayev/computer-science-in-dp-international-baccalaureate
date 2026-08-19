@@ -17,27 +17,27 @@ from abc import ABC, abstractmethod
 
 
 # --------------------------------------------------------------------------
-# Abtract class Student
+# Abstrakt sinif Telebe
 #
 # NİYƏ ABSTRAKT SİNİF LAZIMDIR?
 # Təsəvvür edin ki, "Tələbə" anlayışı özlüyündə "natamam"dır — real
 # həyatda sırf "Tələbə" deyə bir şey yoxdur, HƏR tələbə ya bakalavr,
 # ya magistr, ya da doktoranturadadır (konkret bir NÖVDÜR).
-# "Student" sinfini abstrakt etməklə biz deyirik:
+# "Telebe" sinfini abstrakt etməklə biz deyirik:
 #     "Bu sinifin özündən BİRBAŞA obyekt yaratmaq MƏNTİQSİZDİR,
-#      YALNIZ ondan miras alan KONKRET siniflər (GraduateStudent,
-#      PhDStudent) obyekt yarada bilər."
+#      YALNIZ ondan miras alan KONKRET siniflər (MagistrTelebe,
+#      DoktorantTelebe) obyekt yarada bilər."
 #
-# ABC-dən miras almaqla (class Student(ABC):) sinif "abstrakt" statusu
+# ABC-dən miras almaqla (class Telebe(ABC):) sinif "abstrakt" statusu
 # qazanır.
 # --------------------------------------------------------------------------
-class Student(ABC):
+class Telebe(ABC):
 
-    def __init__(self, name):
-        self._name = name
+    def __init__(self, ad):
+        self._ad = ad
 
-    def get_name(self):
-        return self._name
+    def get_ad(self):
+        return self._ad
 
     # --------------------------------------------------------
     # @abstractmethod — bu, DEKORATORDUR (metodun üstündə "@" ilə yazılır).
@@ -46,11 +46,11 @@ class Student(ABC):
     # @abstractmethod bu metodu "MƏCBURİ OVERRIDE OLUNMALI" elan edir.
     #
     # NƏTİCƏ:
-    #   - Əgər GraduateStudent (və ya hər hansı digər alt sinif)
-    #     show_info() metodunu ÖZÜ YAZMASA, Python ondan obyekt
+    #   - Əgər MagistrTelebe (və ya hər hansı digər alt sinif)
+    #     melumat_goster() metodunu ÖZÜ YAZMASA, Python ondan obyekt
     #     yaratmağa İCAZƏ VERMƏYƏCƏK və xəta buraxacaq:
     #         TypeError: Can't instantiate abstract class ... with
-    #         abstract method show_info
+    #         abstract method melumat_goster
     #
     # "pass" — bu metodun burada heç bir real kodu (gövdəsi) yoxdur,
     # sadəcə onun "İMZASINI" (adını və parametrlərini) göstərir.
@@ -58,66 +58,66 @@ class Student(ABC):
     # yazılıb" mənasını verən açar sözdür.
     # --------------------------------------------------------
     @abstractmethod
-    def show_info(self):
+    def melumat_goster(self):
         pass
 
 
 # --------------------------------------------------------------------------
-# Student-dən miras alan BİRİNCİ konkret (real obyekt yaradıla bilən) sinif
+# Telebe-dən miras alan BİRİNCİ konkret (real obyekt yaradıla bilən) sinif
 # --------------------------------------------------------------------------
-class GraduateStudent(Student):
+class MagistrTelebe(Telebe):
 
-    def __init__(self, name, university):
-        super().__init__(name)  # ana sinifin konstruktoru çağırılır
-        self._university = university
+    def __init__(self, ad, universitet):
+        super().__init__(ad)  # ana sinifin konstruktoru çağırılır
+        self._universitet = universitet
 
     # Abstrakt metodun KONKRET İMPLEMENTASİYASI.
-    # Məhz bu metod yazıldığı üçün GraduateStudent sinifindən artıq
+    # Məhz bu metod yazıldığı üçün MagistrTelebe sinifindən artıq
     # obyekt yaratmaq mümkündür (bütün abstrakt metodlar "doldurulub").
-    def show_info(self):
-        print("Graduate Student:", self.get_name())
-        print("University:", self._university)
+    def melumat_goster(self):
+        print("Magistr Tələbə:", self.get_ad())
+        print("Universitet:", self._universitet)
 
 
 # --------------------------------------------------------------------------
-# Student-dən miras alan İKİNCİ konkret sinif.
-# Diqqət: GraduateStudent-dən deyil, birbaşa Student-dən miras alır —
-# yəni bu iki sinif (GraduateStudent və PhDStudent) BİR-BİRİNƏ QOHUM
-# DEYİL, hər ikisi sadəcə eyni "ata"nın (Student) övladlarıdır.
+# Telebe-dən miras alan İKİNCİ konkret sinif.
+# Diqqət: MagistrTelebe-dən deyil, birbaşa Telebe-dən miras alır —
+# yəni bu iki sinif (MagistrTelebe və DoktorantTelebe) BİR-BİRİNƏ QOHUM
+# DEYİL, hər ikisi sadəcə eyni "ata"nın (Telebe) övladlarıdır.
 # --------------------------------------------------------------------------
-class PhDStudent(Student):
+class DoktorantTelebe(Telebe):
 
-    def __init__(self, name, research_field):
-        super().__init__(name)
-        self._research_field = research_field
+    def __init__(self, ad, tedqiqat_sahesi):
+        super().__init__(ad)
+        self._tedqiqat_sahesi = tedqiqat_sahesi
 
-    def show_info(self):
-        print("PhD Student:", self.get_name())
-        print("Research Field:", self._research_field)
+    def melumat_goster(self):
+        print("Doktorant Tələbə:", self.get_ad())
+        print("Tədqiqat Sahəsi:", self._tedqiqat_sahesi)
 
 
 def main():
-    name = input("Enter student name: ")
-    university = input("Enter university: ")
+    ad = input("Tələbənin adını daxil edin: ")
+    universitet = input("Universiteti daxil edin: ")
 
     # ------------------------------------------------------------
-    # Diqqət: "student" dəyişəni GraduateStudent TİPLİ bir obyektə
-    # işarə edir, amma KONSEPTUAL olaraq o eyni zamanda "bir Student"
-    # da sayılır (çünki GraduateStudent, Student-dən miras alıb).
+    # Diqqət: "telebe" dəyişəni MagistrTelebe TİPLİ bir obyektə
+    # işarə edir, amma KONSEPTUAL olaraq o eyni zamanda "bir Telebe"
+    # da sayılır (çünki MagistrTelebe, Telebe-dən miras alıb).
     #
-    # Bu, POLYMORPHISM-in başqa bir təzahürüdür: "bir GraduateStudent,
-    # istənilən yerdə Student kimi də istifadə oluna bilər".
+    # Bu, POLYMORPHISM-in başqa bir təzahürüdür: "bir MagistrTelebe,
+    # istənilən yerdə Telebe kimi də istifadə oluna bilər".
     # ------------------------------------------------------------
-    student = GraduateStudent(name, university)
-    student.show_info()
+    telebe = MagistrTelebe(ad, universitet)
+    telebe.melumat_goster()
 
     print()  # ekranda boş bir sətir — vizual ayırma üçün
 
     # İkinci alt sinifdən obyekt yaradılır — bu dəfə dəyərlər
     # istifadəçidən yox, birbaşa kodun içində SABİT (hardcoded)
     # olaraq verilib
-    phd = PhDStudent("Nigar", "Artificial Intelligence")
-    phd.show_info()
+    doktorant = DoktorantTelebe("Nigar", "Süni İntellekt")
+    doktorant.melumat_goster()
 
 
 if __name__ == "__main__":

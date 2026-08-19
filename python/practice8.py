@@ -1,14 +1,14 @@
 # ============================================================================
 #  PRACTICE 8 — 3 səviyyəli irsiyyət zənciri
 # ----------------------------------------------------------------------------
-#  Mövzu: Student -> GraduateStudent -> PhDStudent
+#  Mövzu: Telebe -> MagistrTelebe -> DoktorantTelebe
 #  (hər sinif ÖZÜNDƏN ƏVVƏLKİNDƏN miras alır — bu, "ÇOX SƏVİYYƏLİ
 #  İRSİYYƏT" (multi-level inheritance) adlanır)
 #
-#  Fərq Practice 6/7-dən: orada PhDStudent BİRBAŞA Student-dən miras
-#  alırdı (iki sinif QARDAŞ idi). Burada isə PhDStudent, GraduateStudent-
-#  dən miras alır — yəni PhDStudent "GraduateStudent-in bir NÖVÜDÜR",
-#  o da öz növbəsində "Student-in bir NÖVÜDÜR".
+#  Fərq Practice 6/7-dən: orada DoktorantTelebe BİRBAŞA Telebe-dən miras
+#  alırdı (iki sinif QARDAŞ idi). Burada isə DoktorantTelebe, MagistrTelebe-
+#  dən miras alır — yəni DoktorantTelebe "MagistrTelebe-nin bir NÖVÜDÜR",
+#  o da öz növbəsində "Telebe-nin bir NÖVÜDÜR".
 # ============================================================================
 
 from abc import ABC, abstractmethod
@@ -16,125 +16,125 @@ from abc import ABC, abstractmethod
 # Bu sinif bir tələbənin ÜMUMİ xüsusiyyətlərini və davranışlarını təyin edir.
 # Abstract olduğu üçün BİRBAŞA obyekt yaradıla bilməz.
 # Bu sinifdən törədilmiş siniflər öz spesifik xüsusiyyətlərini əlavə edə
-# və show_info metodunu implementasiya edə bilərlər.
+# və melumat_goster metodunu implementasiya edə bilərlər.
 # Bu, Polymorphism və Inheritance konseptlərini nümayiş etdirir.
 
 
 # Abstrakt sinif (Abstraction)
 # Bu sinif birbaşa obyekt yaratmaq üçün deyil,
 # digər siniflər üçün BAZA rolunu oynayır
-class Student(ABC):
+class Telebe(ABC):
 
     # Encapsulation (İnkapsulyasiya)
-    # _name dəyişəni "daxili" sahədir — birbaşa xaricdən dəyişdirilməməlidir,
+    # _ad dəyişəni "daxili" sahədir — birbaşa xaricdən dəyişdirilməməlidir,
     # bunun üçün aşağıdakı getter/setter metodları var
-    def __init__(self, name):
-        self._name = name
+    def __init__(self, ad):
+        self._ad = ad
 
-    # Getter — name dəyərini oxumaq üçün
-    def get_name(self):
-        return self._name
+    # Getter — ad dəyərini oxumaq üçün
+    def get_ad(self):
+        return self._ad
 
-    # Setter — name dəyərini dəyişmək üçün
-    def set_name(self, name):
-        self._name = name
+    # Setter — ad dəyərini dəyişmək üçün
+    def set_ad(self, ad):
+        self._ad = ad
 
     # Abstrakt metod — hər alt sinif öz implementasiyasını yazmalıdır
     @abstractmethod
-    def show_info(self):
+    def melumat_goster(self):
         pass
 
 
 # --------------------------------------------------------------------------
 # Inheritance (İrsiyyət) — 1-Cİ SƏVİYYƏ
-# GraduateStudent sinifi Student sinifindən miras alır
+# MagistrTelebe sinifi Telebe sinifindən miras alır
 # --------------------------------------------------------------------------
-class GraduateStudent(Student):
+class MagistrTelebe(Telebe):
 
     # Bu sinifə məxsus ƏLAVƏ sahə — universitetin adı
-    def __init__(self, name, university):
-        super().__init__(name)  # Student sinifinin konstruktorunu çağırır
-        self._university = university
+    def __init__(self, ad, universitet):
+        super().__init__(ad)  # Telebe sinifinin konstruktorunu çağırır
+        self._universitet = universitet
 
     # Abstrakt metodun implementasiyası (Polymorphism)
-    def show_info(self):
-        # name-ə birbaşa YOX, getter vasitəsilə müraciət edilir (Encapsulation)
-        print("Name:", self.get_name())
-        print("University:", self._university)
+    def melumat_goster(self):
+        # ad-a birbaşa YOX, getter vasitəsilə müraciət edilir (Encapsulation)
+        print("Ad:", self.get_ad())
+        print("Universitet:", self._universitet)
 
 
 # --------------------------------------------------------------------------
 # Inheritance (İrsiyyət) — 2-Cİ SƏVİYYƏ
-# PhDStudent sinifi Student-dən YOX, birbaşa GraduateStudent sinifindən
+# DoktorantTelebe sinifi Telebe-dən YOX, birbaşa MagistrTelebe sinifindən
 # miras alır.
 #
-# Beləliklə Student -> GraduateStudent -> PhDStudent ZƏNCİRİ yaranır —
-# yəni PhDStudent həm GraduateStudent-in, həm də (DOLAYI YOLLA,
-# GraduateStudent vasitəsilə) Student-in BÜTÜN sahə və metodlarına
-# sahibdir. Bu, "ƏCDAD-NƏVƏ" münasibətinə bənzəyir: PhDStudent
-# GraduateStudent-in "övladı", Student-in isə "nəvəsidir".
+# Beləliklə Telebe -> MagistrTelebe -> DoktorantTelebe ZƏNCİRİ yaranır —
+# yəni DoktorantTelebe həm MagistrTelebe-nin, həm də (DOLAYI YOLLA,
+# MagistrTelebe vasitəsilə) Telebe-nin BÜTÜN sahə və metodlarına
+# sahibdir. Bu, "ƏCDAD-NƏVƏ" münasibətinə bənzəyir: DoktorantTelebe
+# MagistrTelebe-nin "övladı", Telebe-nin isə "nəvəsidir".
 # --------------------------------------------------------------------------
-class PhDStudent(GraduateStudent):
+class DoktorantTelebe(MagistrTelebe):
 
     # Bu sinifə məxsus əlavə sahə — tədqiqat mövzusu
-    def __init__(self, name, university, research_topic):
+    def __init__(self, ad, universitet, tedqiqat_movzusu):
         # --------------------------------------------------------
-        # super().__init__(name, university) burada GraduateStudent-in
+        # super().__init__(ad, universitet) burada MagistrTelebe-nin
         # konstruktorunu çağırır.
         #
-        # GraduateStudent-in konstruktoru İSƏ öz növbəsində
-        # super().__init__(name) ilə Student-in konstruktorunu çağırır.
+        # MagistrTelebe-nin konstruktoru İSƏ öz növbəsində
+        # super().__init__(ad) ilə Telebe-nin konstruktorunu çağırır.
         #
-        # Beləliklə bir PhDStudent yaradıldıqda ARDICIL OLARAQ:
-        #   PhDStudent.__init__ -> GraduateStudent.__init__ -> Student.__init__
+        # Beləliklə bir DoktorantTelebe yaradıldıqda ARDICIL OLARAQ:
+        #   DoktorantTelebe.__init__ -> MagistrTelebe.__init__ -> Telebe.__init__
         # ZƏNCİRVARİ ÇAĞIRIŞ baş verir, hər addımda öz sahəsi qurulur.
         # --------------------------------------------------------
-        super().__init__(name, university)
-        self._research_topic = research_topic
+        super().__init__(ad, universitet)
+        self._tedqiqat_movzusu = tedqiqat_movzusu
 
     # --------------------------------------------------------
     # Method Overriding (Polymorphism)
-    # GraduateStudent-dəki show_info() metodu burada GENİŞLƏNDİRİLİR
+    # MagistrTelebe-dəki melumat_goster() metodu burada GENİŞLƏNDİRİLİR
     # (tamam ƏVƏZLƏNMİR — köhnə versiya da içəridə İSTİFADƏ OLUNUR).
     # --------------------------------------------------------
-    def show_info(self):
-        # Əvvəlcə ana sinifin (GraduateStudent) show_info() metodu çağırılır —
-        # bu, "Name" və "University" sətirlərini çap edir.
-        # Diqqət: bu, öz növbəsində Student-in getter-lərindən istifadə edir,
-        # amma Student-in ÖZ show_info()-u YOXDUR (o abstraktdır),
-        # ona görə burada GraduateStudent-in versiyası işə düşür.
-        super().show_info()
+    def melumat_goster(self):
+        # Əvvəlcə ana sinifin (MagistrTelebe) melumat_goster() metodu çağırılır —
+        # bu, "Ad" və "Universitet" sətirlərini çap edir.
+        # Diqqət: bu, öz növbəsində Telebe-nin getter-lərindən istifadə edir,
+        # amma Telebe-nin ÖZ melumat_goster()-i YOXDUR (o abstraktdır),
+        # ona görə burada MagistrTelebe-nin versiyası işə düşür.
+        super().melumat_goster()
 
-        # Sonra BU sinifə (PhDStudent-ə) məxsus əlavə məlumat çap olunur
-        print("Research Topic:", self._research_topic)  # əlavə məlumat
+        # Sonra BU sinifə (DoktorantTelebe-yə) məxsus əlavə məlumat çap olunur
+        print("Tədqiqat Mövzusu:", self._tedqiqat_movzusu)  # əlavə məlumat
 
 
 def main():
-    # ── Graduate Student məlumatlarının daxil edilməsi ──────────────
-    gs_name = input("Enter the name of the graduate student: ")
-    gs_university = input("Enter the university of the graduate student: ")
+    # ── Magistr Tələbə məlumatlarının daxil edilməsi ──────────────
+    mt_ad = input("Magistr tələbənin adını daxil edin: ")
+    mt_universitet = input("Magistr tələbənin universitetini daxil edin: ")
 
-    # Polymorphism — "graduate_student" dəyişəni konseptual olaraq
-    # HƏM GraduateStudent, HƏM DƏ Student sayıla bilər (çünki miras var)
-    graduate_student = GraduateStudent(gs_name, gs_university)
+    # Polymorphism — "magistr_telebe" dəyişəni konseptual olaraq
+    # HƏM MagistrTelebe, HƏM DƏ Telebe sayıla bilər (çünki miras var)
+    magistr_telebe = MagistrTelebe(mt_ad, mt_universitet)
 
-    # show_info() çağırılır — hansı sinifin metodu işə düşdüyü
+    # melumat_goster() çağırılır — hansı sinifin metodu işə düşdüyü
     # obyektin REAL TİPİNƏ (runtime-da müəyyən olunan tip) görə seçilir
-    graduate_student.show_info()
+    magistr_telebe.melumat_goster()
 
-    # ── PhD Student məlumatlarının daxil edilməsi ───────────────────
-    phd_name = input("Enter the name of the PhD student: ")
-    phd_university = input("Enter the university of the PhD student: ")
-    phd_research_topic = input("Enter the research topic of the PhD student: ")
+    # ── Doktorant Tələbə məlumatlarının daxil edilməsi ───────────────────
+    dt_ad = input("Doktorant tələbənin adını daxil edin: ")
+    dt_universitet = input("Doktorant tələbənin universitetini daxil edin: ")
+    dt_tedqiqat_movzusu = input("Doktorant tələbənin tədqiqat mövzusunu daxil edin: ")
 
-    # Polymorphism — PhDStudent obyekti yaradılır.
-    # Bu obyekt EYNİ ZAMANDA GraduateStudent VƏ Student sayıla bilər
-    # (çünki irsiyyət zənciri var: PhDStudent -> GraduateStudent -> Student)
-    phd_student = PhDStudent(phd_name, phd_university, phd_research_topic)
+    # Polymorphism — DoktorantTelebe obyekti yaradılır.
+    # Bu obyekt EYNİ ZAMANDA MagistrTelebe VƏ Telebe sayıla bilər
+    # (çünki irsiyyət zənciri var: DoktorantTelebe -> MagistrTelebe -> Telebe)
+    doktorant_telebe = DoktorantTelebe(dt_ad, dt_universitet, dt_tedqiqat_movzusu)
 
-    # show_info() çağırılır — bu dəfə PhDStudent-in OVERRIDE EDİLMİŞ
-    # (həm də daxilində GraduateStudent-in metodunu ÇAĞIRAN) versiyası işləyir
-    phd_student.show_info()
+    # melumat_goster() çağırılır — bu dəfə DoktorantTelebe-nin OVERRIDE EDİLMİŞ
+    # (həm də daxilində MagistrTelebe-nin metodunu ÇAĞIRAN) versiyası işləyir
+    doktorant_telebe.melumat_goster()
 
 
 if __name__ == "__main__":

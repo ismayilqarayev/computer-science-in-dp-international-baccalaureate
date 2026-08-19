@@ -8,7 +8,7 @@
 #    4) Obyekti funksiyaya ötürüb onun daxili vəziyyətini necə dəyişmək olar?
 # ============================================================================
 
-class Student:
+class Telebe:
 
     # __init__ — konstruktor, obyekt yaradılan zaman avtomatik işləyir
     def __init__(self, ad):
@@ -25,7 +25,7 @@ class Student:
         #      bunun əvəzinə mənim təqdim etdiyim getter/setter
         #      metodlarından istifadə et."
         #
-        # Texniki olaraq kimsə hələ də "student._ad" yazıb birbaşa
+        # Texniki olaraq kimsə hələ də "telebe._ad" yazıb birbaşa
         # dəyişə bilər, amma bu, "yaxşı proqramçılıq qaydalarını
         # pozmaq" sayılır və başqaları bunu görəndə "bu, səhv
         # istifadədir" deyə başa düşür.
@@ -61,37 +61,37 @@ class Student:
 
 
 # --------------------------------------------------------------------------
-# ad_deyis — bu funksiya bir Student obyekti (s) və yeni ad (yeni_ad)
+# ad_deyis — bu funksiya bir Telebe obyekti (t) və yeni ad (yeni_ad)
 # qəbul edir, sonra setter metodu vasitəsilə obyektin adını dəyişdirir.
 #
 # ÇOX VACİB QEYD: Python-da obyektlər funksiyalara "referens ilə"
-# ötürülür — yəni "s" parametri əslində orijinal obyektin özünə
+# ötürülür — yəni "t" parametri əslində orijinal obyektin özünə
 # işarə edir, onun sürəti (kopyası) DEYİL. Ona görə də bu funksiya
 # daxilində edilən dəyişiklik funksiya bitdikdən SONRA da qalacaq —
 # çünki eyni obyektə toxunulub.
 # --------------------------------------------------------------------------
-def ad_deyis(s, yeni_ad):
-    s.set_ad(yeni_ad)
+def ad_deyis(t, yeni_ad):
+    t.set_ad(yeni_ad)
 
 
 def main():
-    # Yeni Student obyekti yaradılır, "Ravan" adı konstruktora ötürülür.
+    # Yeni Telebe obyekti yaradılır, "Ravan" adı konstruktora ötürülür.
     # Bu, avtomatik olaraq __init__ metodunu çağırır və self._ad = "Ravan" edir.
-    s1 = Student("Ravan")
+    t1 = Telebe("Ravan")
 
     # Getter metodu çağırılaraq cari ad ekrana çıxarılır.
     # print() funksiyasına verilən birdən çox arqument (dəyər) aralarında
     # boşluqla ayrılaraq çap olunur.
-    print("Əvvəl:", s1.get_ad())
+    print("Əvvəl:", t1.get_ad())
 
-    # ad_deyis funksiyası çağırılır. "s1" obyekti və "Ismayil" mətni
+    # ad_deyis funksiyası çağırılır. "t1" obyekti və "Ismayil" mətni
     # parametr kimi ötürülür. Funksiya daxilində setter işə düşəcək
-    # və s1 obyektinin "_ad" sahəsi "Ismayil" olacaq.
-    ad_deyis(s1, "Ismayil")
+    # və t1 obyektinin "_ad" sahəsi "Ismayil" olacaq.
+    ad_deyis(t1, "Ismayil")
 
     # Yenilənmiş adı yenidən getter vasitəsilə oxuyub çap edirik —
     # burada "Sonra: Ismayil" görməliyik, çünki obyekt həqiqətən dəyişib.
-    print("Sonra:", s1.get_ad())
+    print("Sonra:", t1.get_ad())
 
 
 if __name__ == "__main__":

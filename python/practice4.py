@@ -8,26 +8,26 @@
 #       obyekt yaratmaq
 # ============================================================================
 
-class Student:
+class Telebe:
 
-    def __init__(self, name):
-        self._name = name
+    def __init__(self, ad):
+        self._ad = ad
 
-    def get_name(self):
-        return self._name
+    def get_ad(self):
+        return self._ad
 
-    def set_name(self, name):
-        self._name = name
+    def set_ad(self, ad):
+        self._ad = ad
 
-    # Bu dəfə __str__ sadəcə adın özünü qaytarır (əlavə "Student name:"
+    # Bu dəfə __str__ sadəcə adın özünü qaytarır (əlavə "Tələbənin adı:"
     # mətni yoxdur — Practice 3-dəkindən fərqli olaraq)
     def __str__(self):
-        return self._name
+        return self._ad
 
 
 # Obyektin adını dəyişən köməkçi funksiya
-def rename(student, new_name):
-    student.set_name(new_name)
+def adi_deyis(telebe, yeni_ad):
+    telebe.set_ad(yeni_ad)
 
 
 def main():
@@ -35,12 +35,12 @@ def main():
     # input(prompt) — Python-un DAXİLİ (built-in) funksiyasıdır.
     #
     # İşləmə prinsipi:
-    #   1) Mötərizə içindəki mətn ("Enter the name of the student: ")
+    #   1) Mötərizə içindəki mətn ("Tələbənin adını daxil edin: ")
     #      ekrana çıxarılır, İSTİFADƏÇİDƏN GİRİŞ GÖZLƏNİLİR
     #      (proqram burada DAYANIR)
     #   2) İstifadəçi klaviaturadan nəsə yazıb Enter düyməsini basır
     #   3) Yazılan mətn (Enter-ə qədər olan hissə) FUNKSİYANIN NƏTİCƏSİ
-    #      kimi geri qaytarılır və "student_name" dəyişəninə yazılır
+    #      kimi geri qaytarılır və "telebe_adi" dəyişəninə yazılır
     #
     # Bu, Java-dakı bu iki sətrə DƏQİQ bərabərdir:
     #     Scanner scanner = new Scanner(System.in);
@@ -51,27 +51,27 @@ def main():
     # bunun üçün ayrıca int(...) və ya float(...) çağırmaq lazımdır
     # (bunu digər fayllarda görəcəyik).
     # ------------------------------------------------------------
-    student_name = input("Enter the name of the student: ")
+    telebe_adi = input("Tələbənin adını daxil edin: ")
 
-    # Daxil edilən adla yeni Student obyekti yaradılır
-    student = Student(student_name)
+    # Daxil edilən adla yeni Telebe obyekti yaradılır
+    telebe = Telebe(telebe_adi)
 
-    # print("Current name:", student) — burada iki dəyər verilib:
-    # sabit mətn "Current name:" və "student" obyekti.
-    # print() bunları BOŞLUQLA ayıraraq çap edir, "student" hissəsi
+    # print("Cari ad:", telebe) — burada iki dəyər verilib:
+    # sabit mətn "Cari ad:" və "telebe" obyekti.
+    # print() bunları BOŞLUQLA ayıraraq çap edir, "telebe" hissəsi
     # üçün avtomatik olaraq __str__ metodu çağırılır.
-    print("Current name:", student)
+    print("Cari ad:", telebe)
 
     # Yeni ad üçün təkrar giriş alınır
-    new_name = input("Enter the new name of the student: ")
+    yeni_ad = input("Tələbənin yeni adını daxil edin: ")
 
-    # rename funksiyası vasitəsilə obyektin adı yenilənir.
-    # Diqqət: "student" dəyişəni HƏMİN OBYEKTƏ işarə etməyə davam edir,
-    # sadəcə onun DAXİLİNDƏKİ "_name" sahəsi dəyişib.
-    rename(student, new_name)
+    # adi_deyis funksiyası vasitəsilə obyektin adı yenilənir.
+    # Diqqət: "telebe" dəyişəni HƏMİN OBYEKTƏ işarə etməyə davam edir,
+    # sadəcə onun DAXİLİNDƏKİ "_ad" sahəsi dəyişib.
+    adi_deyis(telebe, yeni_ad)
 
     # Yenilənmiş adla obyekt yenidən çap olunur
-    print("New name:", student)
+    print("Yeni ad:", telebe)
 
 
 if __name__ == "__main__":

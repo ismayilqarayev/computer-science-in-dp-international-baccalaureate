@@ -7,8 +7,8 @@
 #  bütün öyrənilmiş OOP anlayışlarını bir proqramda birləşdirir:
 #     - Abstraction (ABC, @abstractmethod)
 #     - Encapsulation ("_" prefiksli sahələr + getter/setter)
-#     - Inheritance (Student -> GraduateStudent -> PhDStudent)
-#     - Polymorphism (show_info() metodunun hər sinifdə fərqli işləməsi)
+#     - Inheritance (Telebe -> MagistrTelebe -> DoktorantTelebe)
+#     - Polymorphism (melumat_goster() metodunun hər sinifdə fərqli işləməsi)
 #     - Validasiya (regex ilə telefon/email formatını yoxlamaq)
 # ============================================================================
 
@@ -22,9 +22,9 @@ from abc import ABC, abstractmethod
 # Bu sinif birbaşa obyekt yaratmaq üçün deyil,
 # digər siniflər üçün baza rolunu oynayır.
 # ABC-dən miras alır və içində @abstractmethod olduğu üçün
-# bu sinifdən birbaşa "Student(...)" yazaraq obyekt yaratmaq MÜMKÜN
+# bu sinifdən birbaşa "Telebe(...)" yazaraq obyekt yaratmaq MÜMKÜN
 # OLMAYACAQ — Python bunu XƏTA ilə əngəlləyəcək.
-class Student(ABC):
+class Telebe(ABC):
 
     # ------------------------------------------------------------------
     # Encapsulation (İnkapsulyasiya)
@@ -35,87 +35,87 @@ class Student(ABC):
     # Konstruktor DÖRD parametr qəbul edir və hamısını AYRI-AYRI
     # sahələrə yazır.
     # ------------------------------------------------------------------
-    def __init__(self, name, surname, phone_number, email):
-        self._name = name
-        self._surname = surname
-        self._phone_number = phone_number
+    def __init__(self, ad, soyad, telefon_nomresi, email):
+        self._ad = ad
+        self._soyad = soyad
+        self._telefon_nomresi = telefon_nomresi
         self._email = email
 
     # ---- Getter-lər — hər sahə üçün AYRI bir "oxu" metodu ----
-    def get_name(self):
-        return self._name
+    def get_ad(self):
+        return self._ad
 
-    def get_surname(self):
-        return self._surname
+    def get_soyad(self):
+        return self._soyad
 
-    def get_phone_number(self):
-        return self._phone_number
+    def get_telefon_nomresi(self):
+        return self._telefon_nomresi
 
     def get_email(self):
         return self._email
 
     # ---- Setter-lər — hər sahə üçün AYRI bir "yaz" metodu ----
-    def set_name(self, name):
-        self._name = name
+    def set_ad(self, ad):
+        self._ad = ad
 
-    def set_surname(self, surname):
-        self._surname = surname
+    def set_soyad(self, soyad):
+        self._soyad = soyad
 
-    def set_phone_number(self, phone_number):
-        self._phone_number = phone_number
+    def set_telefon_nomresi(self, telefon_nomresi):
+        self._telefon_nomresi = telefon_nomresi
 
     def set_email(self, email):
         self._email = email
 
     # ------------------------------------------------------------------
     # Abstrakt metod — hər alt sinif öz implementasiyasını yazmalıdır.
-    # Bu, "bütün Student-lər show_info() metoduna sahib OLMALIDIR,
+    # Bu, "bütün Telebe-lər melumat_goster() metoduna sahib OLMALIDIR,
     # amma HƏR BİRİ onu ÖZ ÜSULU İLƏ yazacaq" fikrini ifadə edir —
     # bu, POLYMORPHISM-in TƏMƏLİDİR.
     # ------------------------------------------------------------------
     @abstractmethod
-    def show_info(self):
+    def melumat_goster(self):
         pass
 
 
 # ══════════════════════════════════════════════════════════════════════════
 #  Inheritance (İrsiyyət) — 1-Cİ SƏVİYYƏ
 # ══════════════════════════════════════════════════════════════════════════
-class GraduateStudent(Student):
+class MagistrTelebe(Telebe):
 
-    def __init__(self, name, surname, phone_number, email, university):
-        # super() ilə Student-in konstruktoru çağırılır, 4 parametr ötürülür
-        super().__init__(name, surname, phone_number, email)
+    def __init__(self, ad, soyad, telefon_nomresi, email, universitet):
+        # super() ilə Telebe-nin konstruktoru çağırılır, 4 parametr ötürülür
+        super().__init__(ad, soyad, telefon_nomresi, email)
         # Bu sinifə MƏXSUS əlavə sahə
-        self._university = university
+        self._universitet = universitet
 
     # Abstrakt metodun implementasiyası (Polymorphism)
-    def show_info(self):
+    def melumat_goster(self):
         # f-string-lər içində getter metodları çağırılır —
-        # birbaşa self._name yerinə self.get_name() istifadə olunur,
+        # birbaşa self._ad yerinə self.get_ad() istifadə olunur,
         # bu, ENCAPSULATION prinsipinə hörmət göstərməkdir
-        print(f"Name: {self.get_name()} {self.get_surname()}")
-        print(f"Phone: {self.get_phone_number()}")
+        print(f"Ad: {self.get_ad()} {self.get_soyad()}")
+        print(f"Telefon: {self.get_telefon_nomresi()}")
         print(f"Email: {self.get_email()}")
-        print(f"University: {self._university}")
+        print(f"Universitet: {self._universitet}")
 
 
 # ══════════════════════════════════════════════════════════════════════════
 #  Inheritance (İrsiyyət) — 2-Cİ SƏVİYYƏ
-#  PhDStudent -> GraduateStudent -> Student ZƏNCİRİ
+#  DoktorantTelebe -> MagistrTelebe -> Telebe ZƏNCİRİ
 # ══════════════════════════════════════════════════════════════════════════
-class PhDStudent(GraduateStudent):
+class DoktorantTelebe(MagistrTelebe):
 
-    def __init__(self, name, surname, phone_number, email, university, research_topic):
-        # GraduateStudent-in konstruktoru çağırılır (5 parametr) —
-        # o da öz növbəsində Student-in konstruktorunu çağıracaq
-        super().__init__(name, surname, phone_number, email, university)
-        self._research_topic = research_topic
+    def __init__(self, ad, soyad, telefon_nomresi, email, universitet, tedqiqat_movzusu):
+        # MagistrTelebe-nin konstruktoru çağırılır (5 parametr) —
+        # o da öz növbəsində Telebe-nin konstruktorunu çağıracaq
+        super().__init__(ad, soyad, telefon_nomresi, email, universitet)
+        self._tedqiqat_movzusu = tedqiqat_movzusu
 
     # Method Overriding (Polymorphism)
-    def show_info(self):
-        super().show_info()  # GraduateStudent-in show_info()-u ƏVVƏLCƏ işə düşür
-        print(f"Research Topic: {self._research_topic}")  # sonra əlavə sətir çap olunur
+    def melumat_goster(self):
+        super().melumat_goster()  # MagistrTelebe-nin melumat_goster()-u ƏVVƏLCƏ işə düşür
+        print(f"Tədqiqat Mövzusu: {self._tedqiqat_movzusu}")  # sonra əlavə sətir çap olunur
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -124,79 +124,79 @@ class PhDStudent(GraduateStudent):
 #  "bağlı" olmadıqları üçün sinif daxilinə YAZILMASINA EHTİYAC YOXDUR
 # ══════════════════════════════════════════════════════════════════════════
 
-def read_non_empty_input(prompt):
+def bos_olmayan_giris_oxu(mesaj):
     # Boş mətn qəbul olunmayana qədər TƏKRAR-TƏKRAR soruşur
     while True:
-        value = input(prompt).strip()
-        if value:
-            return value
-        print("Invalid entry: this field cannot be empty. Please enter a valid value.")
+        deyer = input(mesaj).strip()
+        if deyer:
+            return deyer
+        print("Yanlış giriş: bu sahə boş ola bilməz. Zəhmət olmasa düzgün dəyər daxil edin.")
 
 
-def is_valid_phone(phone):
+def telefon_duzgundur(telefon):
     # Telefon nömrəsi: əvvəlində İSTƏYƏ BAĞLI "+" , sonra 7-20 arası
     # rəqəm/tire/boşluq simvolu (ətraflı izah üçün bax: practice9.py)
-    return re.match(r"^\+?[0-9\-\s]{7,20}$", phone) is not None
+    return re.match(r"^\+?[0-9\-\s]{7,20}$", telefon) is not None
 
 
-def is_valid_email(email):
+def email_duzgundur(email):
     # Email formatı: "nəsə@nəsə.nəsə" şəklində olmalıdır
     return re.match(r"^[^\s@]+@[^\s@]+\.[^\s@]+$", email) is not None
 
 
-def read_valid_phone(prompt):
+def duzgun_telefon_oxu(mesaj):
     while True:
-        phone = input(prompt).strip()
-        if not phone:
-            print("Invalid entry: phone number cannot be empty.")
+        telefon = input(mesaj).strip()
+        if not telefon:
+            print("Yanlış giriş: telefon nömrəsi boş ola bilməz.")
             continue  # dövrün əvvəlinə qayıdır, yeni sual verir
-        if is_valid_phone(phone):
-            return phone
-        print("Invalid phone number. Use digits, spaces, dashes, and optional leading +.")
+        if telefon_duzgundur(telefon):
+            return telefon
+        print("Telefon nömrəsi yanlışdır. Rəqəm, boşluq, tire və ixtiyari başlanğıc + istifadə edin.")
 
 
-def read_valid_email(prompt):
+def duzgun_email_oxu(mesaj):
     while True:
-        email = input(prompt).strip()
+        email = input(mesaj).strip()
         if not email:
-            print("Invalid entry: email cannot be empty.")
+            print("Yanlış giriş: email boş ola bilməz.")
             continue
-        if is_valid_email(email):
+        if email_duzgundur(email):
             return email
-        print("Invalid email format. Example: user@example.com")
+        print("Email formatı yanlışdır. Nümunə: user@example.com")
 
 
 def main():
-    # ── Graduate Student məlumatlarının daxil edilməsi ──────────────
-    print("Graduate student data entry:")
-    gs_name = read_non_empty_input("Enter the name of the graduate student: ")
-    gs_surname = read_non_empty_input("Enter the surname of the graduate student: ")
-    gs_phone = read_valid_phone("Enter the phone number of the graduate student: ")
-    gs_email = read_valid_email("Enter the email of the graduate student: ")
-    gs_university = read_non_empty_input("Enter the university of the graduate student: ")
+    # ── Magistr Tələbə məlumatlarının daxil edilməsi ──────────────
+    print("Magistr tələbə məlumatlarının daxil edilməsi:")
+    mt_ad = bos_olmayan_giris_oxu("Magistr tələbənin adını daxil edin: ")
+    mt_soyad = bos_olmayan_giris_oxu("Magistr tələbənin soyadını daxil edin: ")
+    mt_telefon = duzgun_telefon_oxu("Magistr tələbənin telefon nömrəsini daxil edin: ")
+    mt_email = duzgun_email_oxu("Magistr tələbənin emailini daxil edin: ")
+    mt_universitet = bos_olmayan_giris_oxu("Magistr tələbənin universitetini daxil edin: ")
 
     # --------------------------------------------------------
-    # Diqqət: "Student" tipli ABSTRAKT sinifdən DEYİL, konkret
-    # GraduateStudent sinifindən obyekt yaradılır — çünki Student
+    # Diqqət: "Telebe" tipli ABSTRAKT sinifdən DEYİL, konkret
+    # MagistrTelebe sinifindən obyekt yaradılır — çünki Telebe
     # abstraktdır və obyekt YARADA BİLMƏZ (Python bunu qadağan edər).
     # --------------------------------------------------------
-    graduate_student = GraduateStudent(gs_name, gs_surname, gs_phone, gs_email, gs_university)
+    magistr_telebe = MagistrTelebe(mt_ad, mt_soyad, mt_telefon, mt_email, mt_universitet)
     print()
-    graduate_student.show_info()
+    magistr_telebe.melumat_goster()
 
-    # ── PhD Student məlumatlarının daxil edilməsi ───────────────────
+    # ── Doktorant Tələbə məlumatlarının daxil edilməsi ───────────────────
     print()
-    print("PhD student data entry:")
-    phd_name = read_non_empty_input("Enter the name of the PhD student: ")
-    phd_surname = read_non_empty_input("Enter the surname of the PhD student: ")
-    phd_phone = read_valid_phone("Enter the phone number of the PhD student: ")
-    phd_email = read_valid_email("Enter the email of the PhD student: ")
-    phd_university = read_non_empty_input("Enter the university of the PhD student: ")
-    phd_research_topic = read_non_empty_input("Enter the research topic of the PhD student: ")
+    print("Doktorant tələbə məlumatlarının daxil edilməsi:")
+    dt_ad = bos_olmayan_giris_oxu("Doktorant tələbənin adını daxil edin: ")
+    dt_soyad = bos_olmayan_giris_oxu("Doktorant tələbənin soyadını daxil edin: ")
+    dt_telefon = duzgun_telefon_oxu("Doktorant tələbənin telefon nömrəsini daxil edin: ")
+    dt_email = duzgun_email_oxu("Doktorant tələbənin emailini daxil edin: ")
+    dt_universitet = bos_olmayan_giris_oxu("Doktorant tələbənin universitetini daxil edin: ")
+    dt_tedqiqat_movzusu = bos_olmayan_giris_oxu("Doktorant tələbənin tədqiqat mövzusunu daxil edin: ")
 
-    phd_student = PhDStudent(phd_name, phd_surname, phd_phone, phd_email, phd_university, phd_research_topic)
+    doktorant_telebe = DoktorantTelebe(dt_ad, dt_soyad, dt_telefon, dt_email, dt_universitet, dt_tedqiqat_movzusu)
     print()
-    phd_student.show_info()
+    doktorant_telebe.melumat_goster()
 
 
 if __name__ == "__main__":

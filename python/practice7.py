@@ -9,73 +9,73 @@
 from abc import ABC, abstractmethod
 
 
-# Abstrakt baza sinif — bütün "Student" tiplərinin ORTAQ hissəsi bu sinifdə
-class Student(ABC):
+# Abstrakt baza sinif — bütün "Telebe" tiplərinin ORTAQ hissəsi bu sinifdə
+class Telebe(ABC):
 
-    def __init__(self, name):
-        self._name = name  # encapsulation: "_" ilə "daxili sahə" işarələnir
+    def __init__(self, ad):
+        self._ad = ad  # encapsulation: "_" ilə "daxili sahə" işarələnir
 
-    def get_name(self):
-        return self._name
+    def get_ad(self):
+        return self._ad
 
     # Bu metodun gövdəsi (bədəni) YOXDUR — hər alt sinif ÖZÜ yazmalıdır.
     # Əgər alt sinif bunu yazmasa, Python obyekt yaratmağa İCAZƏ VERMƏYƏCƏK.
     @abstractmethod
-    def show_info(self):
+    def melumat_goster(self):
         pass
 
 
 # Birinci alt sinif — universitet (bakalavr/magistr) tələbəsi
-class GraduateStudent(Student):
+class MagistrTelebe(Telebe):
 
-    def __init__(self, name, university):
-        super().__init__(name)  # ana sinifin konstruktoru işə salınır
-        self._university = university
+    def __init__(self, ad, universitet):
+        super().__init__(ad)  # ana sinifin konstruktoru işə salınır
+        self._universitet = universitet
 
-    def show_info(self):
-        print("Graduate Student:", self.get_name())
-        print("University:", self._university)
+    def melumat_goster(self):
+        print("Magistr Tələbə:", self.get_ad())
+        print("Universitet:", self._universitet)
 
 
 # İkinci alt sinif — doktorantura tələbəsi
-class PhDStudent(Student):
+class DoktorantTelebe(Telebe):
 
-    def __init__(self, name, research_field):
-        super().__init__(name)
-        self._research_field = research_field
+    def __init__(self, ad, tedqiqat_sahesi):
+        super().__init__(ad)
+        self._tedqiqat_sahesi = tedqiqat_sahesi
 
-    def show_info(self):
-        print("PhD Student:", self.get_name())
-        print("Research Field:", self._research_field)
+    def melumat_goster(self):
+        print("Doktorant Tələbə:", self.get_ad())
+        print("Tədqiqat Sahəsi:", self._tedqiqat_sahesi)
 
 
 def main():
     # --------------------------------------------------------
-    # Birinci obyekt — GraduateStudent — istifadəçi girişindən yaradılır.
+    # Birinci obyekt — MagistrTelebe — istifadəçi girişindən yaradılır.
     #
     # Diqqət: iki dəfə input() çağırılır, ARDICIL OLARAQ.
     # Proqram birinci sualı verir, cavab gözləyir, sonra ikinci sualı verir.
     # --------------------------------------------------------
-    name = input("Enter graduate student name: ")
-    university = input("Enter university: ")
+    ad = input("Magistr tələbənin adını daxil edin: ")
+    universitet = input("Universiteti daxil edin: ")
 
-    student = GraduateStudent(name, university)
-    student.show_info()
+    telebe = MagistrTelebe(ad, universitet)
+    telebe.melumat_goster()
 
     print()  # ekranda boş sətir — iki nəticəni vizual olaraq ayırmaq üçün
 
     # --------------------------------------------------------
-    # İkinci obyekt — PhDStudent — yenə istifadəçi girişindən yaradılır.
-    # Dəyişən adları fərqlidir (phd_name, research_field), çünki
-    # "name" adı artıq yuxarıda istifadə olunub və onu YENİDƏN İSTİFADƏ
+    # İkinci obyekt — DoktorantTelebe — yenə istifadəçi girişindən yaradılır.
+    # Dəyişən adları fərqlidir (doktorant_ad, tedqiqat_sahesi), çünki
+    # "ad" adı artıq yuxarıda istifadə olunub və onu YENİDƏN İSTİFADƏ
     # ETSƏYDİK, əvvəlki dəyəri ÜSTÜNDƏN YAZARDI (bu, səhv olmazdı, amma
     # kodu daha az oxunaqlı edərdi).
     # --------------------------------------------------------
-    phd_name = input("Enter PhD student name: ")
-    research_field = input("Enter research field: ")
+    doktorant_ad = input("Doktorant tələbənin adını daxil edin: ")
+    tedqiqat_sahesi = input("Tədqiqat sahəsini daxil edin: ")
 
-    phd = PhDStudent(phd_name, research_field)
-    phd.show_info()
+    doktorant = DoktorantTelebe(doktorant_ad, tedqiqat_sahesi)
+    doktorant.melumat_goster()
 
 
 if __name__ == "__main__":
