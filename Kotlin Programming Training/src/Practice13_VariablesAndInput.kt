@@ -8,69 +8,69 @@
 // String, Int, Double tipli sahələr və Scanner ilə istifadəçi girişi.
 //
 // ƏSAS FƏRQ (Java vs Kotlin dəyişən elanı):
-//   Java:   String name;        int age;        double price;
-//   Kotlin: var name: String    var age: Int    var price: Double
+//   Java:   String ad;          int yas;        double qiymet;
+//   Kotlin: var ad: String      var yas: Int     var qiymet: Double
 //   Kotlin-də ƏVVƏLCƏ dəyişənin adı, SONRA ":" işarəsi, SONRA tipi yazılır.
 
-// NOT: Ad toqquşmasının (Student, Product və s.) qarşısını almaq üçün hər
+// NOT: Ad toqquşmasının (Telebe, Mehsul və s.) qarşısını almaq üçün hər
 // Practice faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice13
 
 import java.util.Scanner
 
-class Student {
+class Telebe {
     // Sinif daxilində "var" ilə boş sahələr elan edilir,
     // sonra obyekt yaradıldıqdan sonra dəyər mənimsədilir
-    var name: String = ""
-    var age: Int = 0
+    var ad: String = ""
+    var yas: Int = 0
 }
 
-class Product {
-    var name: String = ""
-    var price: Double = 0.0
+class Mehsul {
+    var ad: String = ""
+    var qiymet: Double = 0.0
 }
 
 fun main() {
     val sc = Scanner(System.`in`)
 
     // ── 1) Sadə String və Int dəyişənlər ─────────────────────────
-    val student = Student()
+    val telebe = Telebe()
 
-    println("Enter your name: ")
-    student.name = sc.nextLine()
+    println("Adınızı daxil edin: ")
+    telebe.ad = sc.nextLine()
 
-    println("Enter your age: ")
+    println("Yaşınızı daxil edin: ")
     // Java-da: sc.nextInt()
     // Kotlin-də Scanner eyni cür işləyir
-    student.age = sc.nextInt()
+    telebe.yas = sc.nextInt()
     sc.nextLine() // sətir sonundakı "enter"-i təmizləyirik (buffer problemi olmasın deyə)
 
-    println("Name: ${student.name} Age: ${student.age}")
+    println("Ad: ${telebe.ad}, Yaş: ${telebe.yas}")
 
     // Yaşı 1 vahid artırırıq (increment)
-    student.age++
-    println("Next year age: ${student.age}")
+    telebe.yas++
+    println("Gələn ilki yaş: ${telebe.yas}")
 
     // ── 2) Double tipli dəyişən — endirim hesablama nümunəsi ─────
-    val product = Product()
+    val mehsul = Mehsul()
 
-    println("Enter product name: ")
-    product.name = sc.nextLine()
+    println("Məhsulun adını daxil edin: ")
+    mehsul.ad = sc.nextLine()
 
-    println("Enter product price: ")
+    println("Məhsulun qiymətini daxil edin: ")
     // Java-da: sc.nextDouble()
-    product.price = sc.nextDouble()
+    mehsul.qiymet = sc.nextDouble()
 
-    println("Enter discount percentage: ")
-    val discount = sc.nextDouble()
+    println("Endirim faizini daxil edin: ")
+    val endirimFaizi = sc.nextDouble()
 
     // Endirimdən sonrakı qiyməti hesablayırıq
-    val finalPrice = product.price - (product.price * discount / 100)
+    val sonQiymet = mehsul.qiymet - (mehsul.qiymet * endirimFaizi / 100)
 
-    println("Product: ${product.name}")
-    println("Original Price: ${product.price}")
-    println("Discount: $discount%")
-    println("Final Price: $finalPrice")
+    println("Məhsul: ${mehsul.ad}")
+    println("Əsas qiymət: ${mehsul.qiymet}")
+    println("Endirim: $endirimFaizi%")
+    println("Son qiymət: $sonQiymet")
 
     sc.close()
 }

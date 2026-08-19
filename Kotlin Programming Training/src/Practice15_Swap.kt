@@ -34,39 +34,39 @@ fun main() {
     // ── 2) İstifadəçidən alınan ədədlərlə swap + increment ──────
     val sc = Scanner(System.`in`)
 
-    println("Enter number 1:")
-    var number1 = sc.nextInt()
+    println("1-ci ədədi daxil edin:")
+    var eded1 = sc.nextInt()
 
-    println("Enter number 2:")
-    var number2 = sc.nextInt()
+    println("2-ci ədədi daxil edin:")
+    var eded2 = sc.nextInt()
 
-    println("Əvvəl: a = $number1, b = $number2")
+    println("Əvvəl: a = $eded1, b = $eded2")
 
     // Dəyərləri dəyişmək (swap)
-    val temp2 = number1
-    number1 = number2
-    number2 = temp2
+    val temp2 = eded1
+    eded1 = eded2
+    eded2 = temp2
 
     // İnkremet əməliyyatı (hər birini 1 vahid artırırıq)
-    number1++
-    number2++
+    eded1++
+    eded2++
 
-    println("Sonra (swap + increment): a = $number1, b = $number2")
+    println("Sonra (swap + increment): a = $eded1, b = $eded2")
 
     sc.close()
 
     println()
 
     // ── 3) SƏHV swap nümunəsi — niyə işləmir? ────────────────────
-    var wrong1 = 5
-    var wrong2 = 7
+    var seh1 = 5
+    var seh2 = 7
 
-    println("Əvvəl (səhv nümunə): a = $wrong1, b = $wrong2")
+    println("Əvvəl (səhv nümunə): a = $seh1, b = $seh2")
 
     // Bu üsul YANLIŞDIR, çünki temp dəyişəni istifadə olunmur:
-    wrong1 = wrong2          // wrong1 indi 7-yə bərabər oldu, köhnə 5 itdi
-    wrong2 = wrong1          // wrong2 artıq YENİ wrong1-i (7-ni) alır, nəticədə hər ikisi 7 olur
+    seh1 = seh2          // seh1 indi 7-yə bərabər oldu, köhnə 5 itdi
+    seh2 = seh1          // seh2 artıq YENİ seh1-i (7-ni) alır, nəticədə hər ikisi 7 olur
 
-    println("Sonra (səhv nümunə): a = $wrong1, b = $wrong2")
+    println("Sonra (səhv nümunə): a = $seh1, b = $seh2")
     println("Diqqət et -> hər ikisi eyni dəyərə düşdü, bu SƏHVdir!")
 }

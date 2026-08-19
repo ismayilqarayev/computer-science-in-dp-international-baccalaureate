@@ -10,76 +10,76 @@
 //   4) Tələbəni silir         (Delete)
 //   0) Proqramdan çıxır
 //
-// Java-dakı ArrayList<Student> əvəzinə Kotlin-də MutableList<Student> işlədilir.
-// "mutableListOf<Student>()" -> boş, dəyişdirilə bilən siyahı yaradır.
+// Java-dakı ArrayList<Telebe> əvəzinə Kotlin-də MutableList<Telebe> işlədilir.
+// "mutableListOf<Telebe>()" -> boş, dəyişdirilə bilən siyahı yaradır.
 
-// NOT: Ad toqquşmasının (Student və s.) qarşısını almaq üçün hər Practice
+// NOT: Ad toqquşmasının (Telebe və s.) qarşısını almaq üçün hər Practice
 // faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice11
 
 import java.util.Scanner
 
-class Student(
-    var name: String
+class Telebe(
+    var ad: String
 ) {
-    override fun toString(): String = name
+    override fun toString(): String = ad
 }
 
 // Kotlin-də top-level (sinifdən kənar) dəyişənlər birbaşa yazıla bilər —
 // Java-da bunun üçün "static" açar sözü ilə sinif daxilində yazmaq lazımdır
-val students = mutableListOf<Student>()
+val telebeler = mutableListOf<Telebe>()
 val scanner = Scanner(System.`in`)
 
 // tələbə əlavə etmək
-fun addStudent() {
+fun telebeElaveEt() {
     print("Tələbə adı daxil edin: ")
-    val name = scanner.nextLine()
+    val ad = scanner.nextLine()
 
-    students.add(Student(name))
+    telebeler.add(Telebe(ad))
     println("Tələbə əlavə edildi.")
 }
 
 // tələbələri göstərmək
-fun showStudents() {
-    if (students.isEmpty()) {
+fun telebeleriGoster() {
+    if (telebeler.isEmpty()) {
         println("Tələbə yoxdur.")
         return
     }
 
     // Kotlin-də "withIndex()" ilə həm indeksi, həm dəyəri birlikdə ala bilirik —
     // Java-dakı klassik "for(int i=0; i<size; i++)" dövrünə ehtiyac qalmır
-    for ((index, student) in students.withIndex()) {
-        println("$index - $student")
+    for ((indeks, telebe) in telebeler.withIndex()) {
+        println("$indeks - $telebe")
     }
 }
 
 // ad dəyişmək
-fun renameStudent() {
-    showStudents()
+fun adDeyis() {
+    telebeleriGoster()
 
     print("İndeks daxil edin: ")
     // Java-da: scanner.nextInt(); scanner.nextLine();  (iki addım)
     // Kotlin-də Scanner sinfi eynidir, ona görə yenə iki addım lazımdır,
     // çünki nextInt() sətir sonundakı "enter"-i (\n) oxumur
-    val index = scanner.nextInt()
+    val indeks = scanner.nextInt()
     scanner.nextLine()
 
     print("Yeni ad daxil edin: ")
-    val newName = scanner.nextLine()
+    val yeniAd = scanner.nextLine()
 
-    students[index].name = newName
+    telebeler[indeks].ad = yeniAd
     println("Ad dəyişdirildi.")
 }
 
 // tələbə silmək
-fun removeStudent() {
-    showStudents()
+fun telebeSil() {
+    telebeleriGoster()
 
     print("Silinəcək indeks: ")
-    val index = scanner.nextInt()
+    val indeks = scanner.nextInt()
     scanner.nextLine()
 
-    students.removeAt(index)
+    telebeler.removeAt(indeks)
     println("Tələbə silindi.")
 }
 
@@ -92,17 +92,17 @@ fun main() {
         println("0 - Çıxış")
 
         print("Seçim: ")
-        val choice = scanner.nextInt()
+        val secim = scanner.nextInt()
         scanner.nextLine()
 
         // Kotlin-də "switch" yoxdur, onun yerinə daha güclü "when" istifadə olunur.
         // Java-dakı hər "case" sətri Kotlin-də bir "->" sətrinə uyğun gəlir,
         // "break" yazmağa ehtiyac yoxdur — Kotlin-də avtomatik "fall-through" olmur.
-        when (choice) {
-            1 -> addStudent()
-            2 -> showStudents()
-            3 -> renameStudent()
-            4 -> removeStudent()
+        when (secim) {
+            1 -> telebeElaveEt()
+            2 -> telebeleriGoster()
+            3 -> adDeyis()
+            4 -> telebeSil()
             0 -> {
                 println("Proqram bitdi.")
                 return

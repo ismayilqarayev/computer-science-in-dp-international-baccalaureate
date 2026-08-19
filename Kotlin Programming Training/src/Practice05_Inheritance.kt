@@ -13,49 +13,49 @@
 // Bu, Kotlin-in "təhlükəsiz dizayn" fəlsəfəsindən irəli gəlir —
 // təsadüfən səhv yerdə miras almağın qarşısını alır.
 
-// NOT: Ad toqquşmasının (Student, GraduateStudent və s.) qarşısını almaq üçün
+// NOT: Ad toqquşmasının (Telebe, MagistrTelebe və s.) qarşısını almaq üçün
 // hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice05
 
 import java.util.Scanner
 
 // "open" -> bu sinifdən miras almaq mümkündür
-open class Student(
-    var name: String
+open class Telebe(
+    var ad: String
 ) {
     // "open" -> bu funksiya alt sinifdə override edilə bilər
     // Əgər "open" yazmasaq, alt sinif bu funksiyanı override edə bilməz (xəta verər)
-    open fun showInfo() {
-        println("Student name: $name")
+    open fun melumatGoster() {
+        println("Tələbənin adı: $ad")
     }
 }
 
-// ": Student(name)" -> Java-dakı "extends Student" + "super(name)" birləşməsidir
+// ": Telebe(ad)" -> Java-dakı "extends Telebe" + "super(ad)" birləşməsidir
 // Kotlin-də ana sinifin constructor-u birbaşa burada çağırılır
-class GraduateStudent(
-    name: String,
-    var university: String
-) : Student(name) {
+class MagistrTelebe(
+    ad: String,
+    var universitet: String
+) : Telebe(ad) {
 
-    // "override" -> ana sinifdəki showInfo() funksiyasını əvəz edirik
-    override fun showInfo() {
-        println("Student name: $name")
-        println("University: $university")
+    // "override" -> ana sinifdəki melumatGoster() funksiyasını əvəz edirik
+    override fun melumatGoster() {
+        println("Tələbənin adı: $ad")
+        println("Universitet: $universitet")
     }
 }
 
 fun main() {
     val scanner = Scanner(System.`in`)
 
-    print("Enter student name: ")
-    val name = scanner.nextLine()
+    print("Tələbənin adını daxil edin: ")
+    val ad = scanner.nextLine()
 
-    print("Enter university: ")
-    val university = scanner.nextLine()
+    print("Universiteti daxil edin: ")
+    val universitet = scanner.nextLine()
 
-    val student = GraduateStudent(name, university)
+    val telebe = MagistrTelebe(ad, universitet)
 
-    student.showInfo()
+    telebe.melumatGoster()
 
     // Kotlin-də Scanner-i manual bağlamaq üçün close() çağırıla bilər,
     // amma "use { }" blokundan istifadə etmək daha yaxşı praktikadır

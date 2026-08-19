@@ -3,95 +3,95 @@
 //  (java/java Practice Programs8.java faylının Kotlin versiyası)
 // ══════════════════════════════════════════════════════════════
 //
-// Zəncir: Student → GraduateStudent → PhDStudent
-// Yəni PhDStudent həm Student-in, həm də GraduateStudent-in
+// Zəncir: Telebe → MagistrTelebe → DoktorantTelebe
+// Yəni DoktorantTelebe həm Telebe-nin, həm də MagistrTelebe-nin
 // bütün funksionallığını miras alır.
 //
 // Burada 4 əsas OOP prinsipini görürük:
-//   1) Abstraction  — Student abstrakt sinifdir, birbaşa obyekt yaradıla bilməz
+//   1) Abstraction  — Telebe abstrakt sinifdir, birbaşa obyekt yaradıla bilməz
 //   2) Encapsulation — sahələr private/val, xaricdən yalnız funksiyalarla əlaqə
-//   3) Inheritance   — GraduateStudent və PhDStudent miras alır
-//   4) Polymorphism  — eyni showInfo() çağırışı, fərqli nəticələr verir
+//   3) Inheritance   — MagistrTelebe və DoktorantTelebe miras alır
+//   4) Polymorphism  — eyni melumatGoster() çağırışı, fərqli nəticələr verir
 
-// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// NOT: Ad toqquşmasının (Telebe, MagistrTelebe, DoktorantTelebe və s.) qarşısını
 // almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice08
 
 import java.util.Scanner
 
 // Abstrakt sinif — baza rolunu oynayır
-abstract class Student(
+abstract class Telebe(
     // Kotlin-də constructor parametri "val" olduqda avtomatik
     // getter yaranır və digər siniflər ona müraciət edə bilir.
     // Java-dakı "private String name + getName()" ekvivalenti budur.
-    val name: String
+    val ad: String
 ) {
-    abstract fun showInfo()
+    abstract fun melumatGoster()
 }
 
-// Inheritance: GraduateStudent Student-dən miras alır
-open class GraduateStudent(
-    name: String,
-    val university: String
-) : Student(name) {
+// Inheritance: MagistrTelebe Telebe-dən miras alır
+open class MagistrTelebe(
+    ad: String,
+    val universitet: String
+) : Telebe(ad) {
 
-    override fun showInfo() {
-        println("Name: $name")
-        println("University: $university")
+    override fun melumatGoster() {
+        println("Ad: $ad")
+        println("Universitet: $universitet")
     }
 }
 
-// Inheritance: PhDStudent GraduateStudent-dən miras alır
-// (Student → GraduateStudent → PhDStudent zənciri)
-class PhDStudent(
-    name: String,
-    university: String,
-    private val researchTopic: String
-) : GraduateStudent(name, university) {
+// Inheritance: DoktorantTelebe MagistrTelebe-dən miras alır
+// (Telebe → MagistrTelebe → DoktorantTelebe zənciri)
+class DoktorantTelebe(
+    ad: String,
+    universitet: String,
+    private val tedqiqatMovzusu: String
+) : MagistrTelebe(ad, universitet) {
 
     // Method Overriding (Polymorphism)
-    // GraduateStudent-dəki showInfo()-nu genişləndiririk
-    override fun showInfo() {
-        // "super.showInfo()" -> ana sinifin funksiyasını çağırır
+    // MagistrTelebe-dəki melumatGoster()-i genişləndiririk
+    override fun melumatGoster() {
+        // "super.melumatGoster()" -> ana sinifin funksiyasını çağırır
         // (Java ilə eyni sintaksis)
-        super.showInfo()
-        println("Research Topic: $researchTopic")
+        super.melumatGoster()
+        println("Tədqiqat mövzusu: $tedqiqatMovzusu")
     }
 }
 
 fun main() {
     Scanner(System.`in`).use { scanner ->
 
-        // ── Graduate Student məlumatlarının daxil edilməsi ──────────────
-        print("Enter the name of the graduate student: ")
-        val gsName = scanner.nextLine()
+        // ── Magistr tələbə məlumatlarının daxil edilməsi ──────────────
+        print("Magistr tələbənin adını daxil edin: ")
+        val mAd = scanner.nextLine()
 
-        print("Enter the university of the graduate student: ")
-        val gsUniversity = scanner.nextLine()
+        print("Magistr tələbənin universitetini daxil edin: ")
+        val mUniversitet = scanner.nextLine()
 
-        // Polymorphism — Student tipli dəyişən GraduateStudent obyektinə işarə edir
-        val graduateStudent: Student = GraduateStudent(gsName, gsUniversity)
+        // Polymorphism — Telebe tipli dəyişən MagistrTelebe obyektinə işarə edir
+        val magistrTelebe: Telebe = MagistrTelebe(mAd, mUniversitet)
 
-        // showInfo() çağırılır — hansı sinifin metodu olduğu runtime-da müəyyən olunur
-        graduateStudent.showInfo()
+        // melumatGoster() çağırılır — hansı sinifin metodu olduğu runtime-da müəyyən olunur
+        magistrTelebe.melumatGoster()
 
         println()
 
-        // ── PhD Student məlumatlarının daxil edilməsi ───────────────────
-        print("Enter the name of the PhD student: ")
-        val phdName = scanner.nextLine()
+        // ── Doktorant məlumatlarının daxil edilməsi ───────────────────
+        print("Doktorantın adını daxil edin: ")
+        val dAd = scanner.nextLine()
 
-        print("Enter the university of the PhD student: ")
-        val phdUniversity = scanner.nextLine()
+        print("Doktorantın universitetini daxil edin: ")
+        val dUniversitet = scanner.nextLine()
 
-        print("Enter the research topic of the PhD student: ")
-        val phdResearchTopic = scanner.nextLine()
+        print("Doktorantın tədqiqat mövzusunu daxil edin: ")
+        val dTedqiqatMovzusu = scanner.nextLine()
 
-        // Polymorphism — Student tipli dəyişən PhDStudent obyektinə işarə edir
-        val phdStudent: Student = PhDStudent(phdName, phdUniversity, phdResearchTopic)
+        // Polymorphism — Telebe tipli dəyişən DoktorantTelebe obyektinə işarə edir
+        val doktorantTelebe: Telebe = DoktorantTelebe(dAd, dUniversitet, dTedqiqatMovzusu)
 
-        // showInfo() çağırılır — PhDStudent-in override edilmiş metodu işləyir
-        phdStudent.showInfo()
+        // melumatGoster() çağırılır — DoktorantTelebe-nin override edilmiş metodu işləyir
+        doktorantTelebe.melumatGoster()
 
     } // "use" bloku bitdikdə Scanner avtomatik bağlanır
 }

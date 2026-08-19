@@ -8,135 +8,135 @@
 //   - "private fun" -> yalnız bu fayl daxilində istifadə oluna bilən köməkçi funksiyalar
 //   - while(true) + return ilə "təkrar sual ver, düzgün cavab alana qədər" məntiqi
 
-// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// NOT: Ad toqquşmasının (Telebe, MagistrTelebe, DoktorantTelebe və s.) qarşısını
 // almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice09
 
 import java.util.Scanner
 
-abstract class Student(
-    val name: String,
-    val surname: String,
-    val phoneNumber: String,
+abstract class Telebe(
+    val ad: String,
+    val soyad: String,
+    val telefon: String,
     val email: String
 ) {
-    abstract fun showInfo()
+    abstract fun melumatGoster()
 }
 
-open class GraduateStudent(
-    name: String,
-    surname: String,
-    phoneNumber: String,
+open class MagistrTelebe(
+    ad: String,
+    soyad: String,
+    telefon: String,
     email: String,
-    val university: String
-) : Student(name, surname, phoneNumber, email) {
+    val universitet: String
+) : Telebe(ad, soyad, telefon, email) {
 
-    override fun showInfo() {
-        println("Name: $name $surname")
-        println("Phone: $phoneNumber")
+    override fun melumatGoster() {
+        println("Ad: $ad $soyad")
+        println("Telefon: $telefon")
         println("Email: $email")
-        println("University: $university")
+        println("Universitet: $universitet")
     }
 }
 
-class PhDStudent(
-    name: String,
-    surname: String,
-    phoneNumber: String,
+class DoktorantTelebe(
+    ad: String,
+    soyad: String,
+    telefon: String,
     email: String,
-    university: String,
-    private val researchTopic: String
-) : GraduateStudent(name, surname, phoneNumber, email, university) {
+    universitet: String,
+    private val tedqiqatMovzusu: String
+) : MagistrTelebe(ad, soyad, telefon, email, universitet) {
 
-    override fun showInfo() {
-        super.showInfo()
-        println("Research Topic: $researchTopic")
+    override fun melumatGoster() {
+        super.melumatGoster()
+        println("Tədqiqat mövzusu: $tedqiqatMovzusu")
     }
 }
 
 // ── Köməkçi (validasiya) funksiyaları ────────────────────────────────
 
 // Boş olmayan mətn daxil edilənə qədər təkrar-təkrar soruşur
-private fun readNonEmptyInput(scanner: Scanner, prompt: String): String {
+private fun boşOlmayanGiriş(scanner: Scanner, sual: String): String {
     while (true) {
-        print(prompt)
-        val input = scanner.nextLine().trim()
-        if (input.isNotEmpty()) {
-            return input
+        print(sual)
+        val giris = scanner.nextLine().trim()
+        if (giris.isNotEmpty()) {
+            return giris
         }
-        println("Invalid entry: this field cannot be empty. Please enter a valid value.")
+        println("Yanlış giriş: bu sahə boş ola bilməz. Zəhmət olmasa düzgün dəyər daxil edin.")
     }
 }
 
 // Telefon nömrəsi formatına uyğun gələnə qədər təkrar soruşur
-private fun readValidPhone(scanner: Scanner, prompt: String): String {
+private fun duzgunTelefonGiriş(scanner: Scanner, sual: String): String {
     while (true) {
-        print(prompt)
-        val phone = scanner.nextLine().trim()
-        if (phone.isEmpty()) {
-            println("Invalid entry: phone number cannot be empty.")
+        print(sual)
+        val telefon = scanner.nextLine().trim()
+        if (telefon.isEmpty()) {
+            println("Yanlış giriş: telefon nömrəsi boş ola bilməz.")
             continue
         }
-        if (isValidPhone(phone)) {
-            return phone
+        if (telefonDuzgundur(telefon)) {
+            return telefon
         }
-        println("Invalid phone number. Use digits, spaces, dashes, and optional leading +.")
+        println("Yanlış telefon nömrəsi. Rəqəm, boşluq, tire və istəyə görə \"+\" işlədin.")
     }
 }
 
 // Email formatına uyğun gələnə qədər təkrar soruşur
-private fun readValidEmail(scanner: Scanner, prompt: String): String {
+private fun duzgunEmailGiriş(scanner: Scanner, sual: String): String {
     while (true) {
-        print(prompt)
+        print(sual)
         val email = scanner.nextLine().trim()
         if (email.isEmpty()) {
-            println("Invalid entry: email cannot be empty.")
+            println("Yanlış giriş: email boş ola bilməz.")
             continue
         }
-        if (isValidEmail(email)) {
+        if (emailDuzgundur(email)) {
             return email
         }
-        println("Invalid email format. Example: user@example.com")
+        println("Yanlış email formatı. Nümunə: istifadeci@example.com")
     }
 }
 
 // Regex ilə telefon formatını yoxlayır: rəqəmlər, boşluq, tire və istəyə görə "+"
-private fun isValidPhone(phone: String): Boolean {
-    return phone.matches(Regex("^\\+?[0-9\\-\\s]{7,20}$"))
+private fun telefonDuzgundur(telefon: String): Boolean {
+    return telefon.matches(Regex("^\\+?[0-9\\-\\s]{7,20}$"))
 }
 
 // Regex ilə sadə email formatını yoxlayır
-private fun isValidEmail(email: String): Boolean {
+private fun emailDuzgundur(email: String): Boolean {
     return email.matches(Regex("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"))
 }
 
 fun main() {
     Scanner(System.`in`).use { scanner ->
 
-        // ── Graduate Student məlumatlarının daxil edilməsi ──────────────
-        println("Graduate student data entry:")
-        val gsName = readNonEmptyInput(scanner, "Enter the name of the graduate student: ")
-        val gsSurname = readNonEmptyInput(scanner, "Enter the surname of the graduate student: ")
-        val gsPhone = readValidPhone(scanner, "Enter the phone number of the graduate student: ")
-        val gsEmail = readValidEmail(scanner, "Enter the email of the graduate student: ")
-        val gsUniversity = readNonEmptyInput(scanner, "Enter the university of the graduate student: ")
+        // ── Magistr tələbə məlumatlarının daxil edilməsi ──────────────
+        println("Magistr tələbə məlumatlarının daxil edilməsi:")
+        val mAd = boşOlmayanGiriş(scanner, "Magistr tələbənin adını daxil edin: ")
+        val mSoyad = boşOlmayanGiriş(scanner, "Magistr tələbənin soyadını daxil edin: ")
+        val mTelefon = duzgunTelefonGiriş(scanner, "Magistr tələbənin telefon nömrəsini daxil edin: ")
+        val mEmail = duzgunEmailGiriş(scanner, "Magistr tələbənin emailini daxil edin: ")
+        val mUniversitet = boşOlmayanGiriş(scanner, "Magistr tələbənin universitetini daxil edin: ")
 
-        val graduateStudent: Student = GraduateStudent(gsName, gsSurname, gsPhone, gsEmail, gsUniversity)
+        val magistrTelebe: Telebe = MagistrTelebe(mAd, mSoyad, mTelefon, mEmail, mUniversitet)
         println()
-        graduateStudent.showInfo()
+        magistrTelebe.melumatGoster()
 
-        // ── PhD Student məlumatlarının daxil edilməsi ───────────────────
+        // ── Doktorant məlumatlarının daxil edilməsi ───────────────────
         println()
-        println("PhD student data entry:")
-        val phdName = readNonEmptyInput(scanner, "Enter the name of the PhD student: ")
-        val phdSurname = readNonEmptyInput(scanner, "Enter the surname of the PhD student: ")
-        val phdPhone = readValidPhone(scanner, "Enter the phone number of the PhD student: ")
-        val phdEmail = readValidEmail(scanner, "Enter the email of the PhD student: ")
-        val phdUniversity = readNonEmptyInput(scanner, "Enter the university of the PhD student: ")
-        val phdResearchTopic = readNonEmptyInput(scanner, "Enter the research topic of the PhD student: ")
+        println("Doktorant məlumatlarının daxil edilməsi:")
+        val dAd = boşOlmayanGiriş(scanner, "Doktorantın adını daxil edin: ")
+        val dSoyad = boşOlmayanGiriş(scanner, "Doktorantın soyadını daxil edin: ")
+        val dTelefon = duzgunTelefonGiriş(scanner, "Doktorantın telefon nömrəsini daxil edin: ")
+        val dEmail = duzgunEmailGiriş(scanner, "Doktorantın emailini daxil edin: ")
+        val dUniversitet = boşOlmayanGiriş(scanner, "Doktorantın universitetini daxil edin: ")
+        val dTedqiqatMovzusu = boşOlmayanGiriş(scanner, "Doktorantın tədqiqat mövzusunu daxil edin: ")
 
-        val phdStudent: Student = PhDStudent(phdName, phdSurname, phdPhone, phdEmail, phdUniversity, phdResearchTopic)
+        val doktorantTelebe: Telebe = DoktorantTelebe(dAd, dSoyad, dTelefon, dEmail, dUniversitet, dTedqiqatMovzusu)
         println()
-        phdStudent.showInfo()
+        doktorantTelebe.melumatGoster()
     }
 }

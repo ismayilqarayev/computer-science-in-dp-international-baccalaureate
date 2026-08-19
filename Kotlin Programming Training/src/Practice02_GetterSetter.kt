@@ -8,7 +8,7 @@
 //   - "getX()" adlı metod yazılır (oxumaq üçün)
 //   - "setX(...)" adlı metod yazılır (dəyişmək üçün)
 //
-// NOT: Digər Practice fayllarında da "Student" adlı sinif olduğu üçün
+// NOT: Digər Practice fayllarında da "Telebe" adlı sinif olduğu üçün
 // ad toqquşmasının (redeclaration) qarşısını almaq məqsədilə hər fayl
 // öz ayrıca "package"-inə yerləşdirilib.
 package practice02
@@ -19,31 +19,31 @@ package practice02
 //   - Bayt kodu (JVM bytecode) səviyyəsində Java ilə eynidir,
 //     sadəcə Kotlin bunu bizim üçün gizli şəkildə yazır.
 
-class Student(
+class Telebe(
     // "var" -> dəyər dəyişə bilər (Java-dakı private String ad + getter/setter-ə bərabər)
-    // Kotlin sinif daxilində və xaricində "s.ad" yazmaqla
+    // Kotlin sinif daxilində və xaricində "t.ad" yazmaqla
     // avtomatik generasiya olunan getter/setter-i işlədir
     var ad: String
 )
 
-// Bu funksiya Student obyektini qəbul edib "ad" sahəsini dəyişdirir
-fun adDeyis(s: Student, yeniAd: String) {
-    // Java-da: s.setAd(yeniAd);
+// Bu funksiya Telebe obyektini qəbul edib "ad" sahəsini dəyişdirir
+fun adDeyis(t: Telebe, yeniAd: String) {
+    // Java-da: t.setAd(yeniAd);
     // Kotlin-də: birbaşa sahəyə mənimsətmə kifayətdir,
     // arxa planda Kotlin bunu setAd() çağırışına çevirir
-    s.ad = yeniAd
+    t.ad = yeniAd
 }
 
 fun main() {
-    // Yeni Student obyekti yaradılır ("new" yazılmır)
-    val s1 = Student("Ravan")
+    // Yeni Telebe obyekti yaradılır ("new" yazılmır)
+    val telebe1 = Telebe("Ravan")
 
-    // Java-da: s1.getAd()
-    // Kotlin-də: s1.ad (avtomatik getter çağırılır)
-    println("Əvvəl: ${s1.ad}")
+    // Java-da: telebe1.getAd()
+    // Kotlin-də: telebe1.ad (avtomatik getter çağırılır)
+    println("Əvvəl: ${telebe1.ad}")
 
     // Metod vasitəsilə obyektin adını dəyişdiririk
-    adDeyis(s1, "Ismayil")
+    adDeyis(telebe1, "Ismayil")
 
-    println("Sonra: ${s1.ad}")
+    println("Sonra: ${telebe1.ad}")
 }

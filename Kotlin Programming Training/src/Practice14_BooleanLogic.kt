@@ -14,29 +14,29 @@ import java.util.Scanner
 fun main() {
     val sc = Scanner(System.`in`)
 
-    println("Enter number 1:")
-    val number1 = sc.nextInt()
+    println("1-ci ədədi daxil edin:")
+    val eded1 = sc.nextInt()
 
-    println("Enter number 2:")
-    val number2 = sc.nextInt()
+    println("2-ci ədədi daxil edin:")
+    val eded2 = sc.nextInt()
 
     // ── Sadə müqayisə ──────────────────────────────────────────
-    val isBigger = number1 > number2
-    if (isBigger) {
-        println("Number 1 is bigger")
+    val boyukdur = eded1 > eded2
+    if (boyukdur) {
+        println("1-ci ədəd daha böyükdür")
     } else {
-        println("Number 2 is bigger or equal")
+        println("2-ci ədəd daha böyük və ya bərabərdir")
     }
 
     // ── VƏ (&&) operatoru — hər iki ədəd müsbət olmalıdır ──────
-    val bothPositiveExpr = (number1 > 0) && (number2 > 0)
-    println("Result (true/false): $bothPositiveExpr")
+    val herIkisiMusbetdir = (eded1 > 0) && (eded2 > 0)
+    println("Nəticə (true/false): $herIkisiMusbetdir")
 
     // ── Eyni yoxlama, if/else ilə mətn şəklində nəticə ─────────
-    if (number1 > 0 && number2 > 0) {
-        println("True: both numbers are positive")
+    if (eded1 > 0 && eded2 > 0) {
+        println("True: hər iki ədəd müsbətdir")
     } else {
-        println("False: at least one number is negative or zero")
+        println("False: ən azı bir ədəd mənfi və ya sıfırdır")
     }
 
     sc.close()

@@ -11,37 +11,37 @@
 // açar sözdür (məs: "for (x in list)"). Ona görə geriyə tərs apostrof (`)
 // içində yazılır: System.`in`
 
-// NOT: Ad toqquşmasının (Student, rename və s.) qarşısını almaq üçün
+// NOT: Ad toqquşmasının (Telebe, adiDeyis və s.) qarşısını almaq üçün
 // hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice04
 
 import java.util.Scanner
 
-class Student(
-    var name: String
+class Telebe(
+    var ad: String
 ) {
-    override fun toString(): String = name
+    override fun toString(): String = ad
 }
 
-fun rename(student: Student, newName: String) {
-    student.name = newName
+fun adiDeyis(telebe: Telebe, yeniAd: String) {
+    telebe.ad = yeniAd
 }
 
 fun main() {
     val scanner = Scanner(System.`in`)
 
-    print("Enter the name of the student: ")
+    print("Tələbənin adını daxil edin: ")
     // Java: scanner.nextLine()  ->  Kotlin-də də eyni cür işlədilir
-    val studentName = scanner.nextLine()
+    val telebeAdi = scanner.nextLine()
 
-    val student = Student(studentName)
-    println("Current name: $student")
+    val telebe = Telebe(telebeAdi)
+    println("Hazırkı ad: $telebe")
 
-    print("Enter the new name of the student: ")
-    val newName = scanner.nextLine()
+    print("Tələbənin yeni adını daxil edin: ")
+    val yeniAd = scanner.nextLine()
 
-    rename(student, newName)
-    println("New name: $student")
+    adiDeyis(telebe, yeniAd)
+    println("Yeni ad: $telebe")
 
     // Kotlin-də Scanner-i "use { }" bloku ilə istifadə etsək,
     // blok bitdikdə avtomatik bağlanır (Java-dakı try-with-resources kimi).

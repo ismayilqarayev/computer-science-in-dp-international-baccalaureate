@@ -3,40 +3,40 @@
 //  (java/java Practice Programs7.java faylının Kotlin versiyası)
 // ══════════════════════════════════════════════════════════════
 //
-// Bu fayl Practice 6-nın davamıdır — fərq budur ki, PhDStudent məlumatları
-// da sabit yox, istifadəçidən Scanner vasitəsilə alınır.
+// Bu fayl Practice 6-nın davamıdır — fərq budur ki, DoktorantTelebe
+// məlumatları da sabit yox, istifadəçidən Scanner vasitəsilə alınır.
 
-// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// NOT: Ad toqquşmasının (Telebe, MagistrTelebe, DoktorantTelebe və s.) qarşısını
 // almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice07
 
 import java.util.Scanner
 
-abstract class Student(
-    val name: String
+abstract class Telebe(
+    val ad: String
 ) {
-    abstract fun showInfo()
+    abstract fun melumatGoster()
 }
 
-class GraduateStudent(
-    name: String,
-    private val university: String
-) : Student(name) {
+class MagistrTelebe(
+    ad: String,
+    private val universitet: String
+) : Telebe(ad) {
 
-    override fun showInfo() {
-        println("Graduate Student: $name")
-        println("University: $university")
+    override fun melumatGoster() {
+        println("Magistr tələbə: $ad")
+        println("Universitet: $universitet")
     }
 }
 
-class PhDStudent(
-    name: String,
-    private val researchField: String
-) : Student(name) {
+class DoktorantTelebe(
+    ad: String,
+    private val tedqiqatSahesi: String
+) : Telebe(ad) {
 
-    override fun showInfo() {
-        println("PhD Student: $name")
-        println("Research Field: $researchField")
+    override fun melumatGoster() {
+        println("Doktorant: $ad")
+        println("Tədqiqat sahəsi: $tedqiqatSahesi")
     }
 }
 
@@ -45,26 +45,26 @@ fun main() {
     // Blok bitdikdə (normal və ya xəta ilə) Scanner avtomatik bağlanır.
     Scanner(System.`in`).use { scanner ->
 
-        // ── Graduate Student məlumatlarının daxil edilməsi ──────────────
-        print("Enter graduate student name: ")
-        val name = scanner.nextLine()
+        // ── Magistr tələbə məlumatlarının daxil edilməsi ──────────────
+        print("Magistr tələbənin adını daxil edin: ")
+        val ad = scanner.nextLine()
 
-        print("Enter university: ")
-        val university = scanner.nextLine()
+        print("Universiteti daxil edin: ")
+        val universitet = scanner.nextLine()
 
-        val student: Student = GraduateStudent(name, university)
-        student.showInfo()
+        val telebe: Telebe = MagistrTelebe(ad, universitet)
+        telebe.melumatGoster()
 
         println()
 
-        // ── PhD Student məlumatlarının daxil edilməsi ───────────────────
-        print("Enter PhD student name: ")
-        val phdName = scanner.nextLine()
+        // ── Doktorant məlumatlarının daxil edilməsi ───────────────────
+        print("Doktorantın adını daxil edin: ")
+        val doktorantAdi = scanner.nextLine()
 
-        print("Enter research field: ")
-        val researchField = scanner.nextLine()
+        print("Tədqiqat sahəsini daxil edin: ")
+        val tedqiqatSahesi = scanner.nextLine()
 
-        val phd: Student = PhDStudent(phdName, researchField)
-        phd.showInfo()
+        val doktorant: Telebe = DoktorantTelebe(doktorantAdi, tedqiqatSahesi)
+        doktorant.melumatGoster()
     }
 }

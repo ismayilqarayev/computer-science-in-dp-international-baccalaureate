@@ -4,9 +4,9 @@
 // ══════════════════════════════════════════════════════════════
 //
 // Məntiq Java ilə tamamilə eynidir:
-//   - "temp % 10" -> sonuncu rəqəmi tapır
-//   - "temp / 10" -> sonuncu rəqəmi ədəddən "atır"
-//   - temp 0 olana qədər bu dövr edir
+//   - "muveqqeti % 10" -> sonuncu rəqəmi tapır
+//   - "muveqqeti / 10" -> sonuncu rəqəmi ədəddən "atır"
+//   - muveqqeti 0 olana qədər bu dövr edir
 //
 // Fərq yalnız sintaksisdədir: Kotlin-də dəyişənlərin tipi çox vaxt
 // yazılmır, çünki Kotlin dəyəri özü tanıyıb tipi avtomatik təyin edir
@@ -17,21 +17,21 @@ import java.util.Scanner
 fun main() {
     val scanner = Scanner(System.`in`)
 
-    print("Enter a number: ")
-    val number = scanner.nextInt()
+    print("Bir ədəd daxil edin: ")
+    val eded = scanner.nextInt()
 
-    var sum = 0
-    // "var temp = number" -> Kotlin "temp"-in tipini Int kimi avtomatik təyin edir
-    var temp = number
+    var cem = 0
+    // "var muveqqeti = eded" -> Kotlin "muveqqeti"-nin tipini Int kimi avtomatik təyin edir
+    var muveqqeti = eded
 
     // Java-dakı "while (temp != 0)" ilə tamamilə eyni
-    while (temp != 0) {
-        val digit = temp % 10
-        sum += digit
-        temp /= 10
+    while (muveqqeti != 0) {
+        val reqem = muveqqeti % 10
+        cem += reqem
+        muveqqeti /= 10
     }
 
-    println("Sum of digits of $number is: $sum")
+    println("$eded ədədinin rəqəmlərinin cəmi: $cem")
 
     scanner.close()
 }

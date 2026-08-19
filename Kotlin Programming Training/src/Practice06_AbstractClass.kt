@@ -4,7 +4,7 @@
 // ══════════════════════════════════════════════════════════════
 //
 // Abstrakt sinif nədir?
-//   - Birbaşa obyekti yaradıla bilməz (məs: Student(...) çağırmaq olmaz)
+//   - Birbaşa obyekti yaradıla bilməz (məs: Telebe(...) çağırmaq olmaz)
 //   - Yalnız digər siniflərə "baza" (parent) rolunu oynayır
 //   - İçində "abstract" funksiyalar ola bilər — bunların gövdəsi (body) yoxdur,
 //     yalnız imzası (siqnaturu) var, hər alt sinif özü doldurmalıdır
@@ -13,64 +13,64 @@
 // yəni ayrıca "open" yazmağa ehtiyac yoxdur, abstract sinifdən miras almaq
 // həmişə mümkündür.
 
-// NOT: Ad toqquşmasının (Student, GraduateStudent, PhDStudent və s.) qarşısını
+// NOT: Ad toqquşmasının (Telebe, MagistrTelebe, DoktorantTelebe və s.) qarşısını
 // almaq üçün hər Practice faylı öz ayrıca "package"-inə yerləşdirilib.
 package practice06
 
 import java.util.Scanner
 
-abstract class Student(
-    val name: String
+abstract class Telebe(
+    val ad: String
 ) {
     // Bu funksiyanın gövdəsi yoxdur -> "abstract"
     // Hər alt sinif bu funksiyanı MÜTLƏQ override etməlidir
-    abstract fun showInfo()
+    abstract fun melumatGoster()
 }
 
-// GraduateStudent -> Student-dən miras alır və showInfo()-nu tamamlayır
-class GraduateStudent(
-    name: String,
-    private val university: String
-) : Student(name) {
+// MagistrTelebe -> Telebe-dən miras alır və melumatGoster()-i tamamlayır
+class MagistrTelebe(
+    ad: String,
+    private val universitet: String
+) : Telebe(ad) {
 
-    override fun showInfo() {
-        println("Graduate Student: $name")
-        println("University: $university")
+    override fun melumatGoster() {
+        println("Magistr tələbə: $ad")
+        println("Universitet: $universitet")
     }
 }
 
-// PhDStudent -> Student-dən miras alır, öz showInfo()-sunu yazır
-class PhDStudent(
-    name: String,
-    private val researchField: String
-) : Student(name) {
+// DoktorantTelebe -> Telebe-dən miras alır, öz melumatGoster()-ini yazır
+class DoktorantTelebe(
+    ad: String,
+    private val tedqiqatSahesi: String
+) : Telebe(ad) {
 
-    override fun showInfo() {
-        println("PhD Student: $name")
-        println("Research Field: $researchField")
+    override fun melumatGoster() {
+        println("Doktorant: $ad")
+        println("Tədqiqat sahəsi: $tedqiqatSahesi")
     }
 }
 
 fun main() {
     val scanner = Scanner(System.`in`)
 
-    print("Enter student name: ")
-    val name = scanner.nextLine()
+    print("Tələbənin adını daxil edin: ")
+    val ad = scanner.nextLine()
 
-    print("Enter university: ")
-    val university = scanner.nextLine()
+    print("Universiteti daxil edin: ")
+    val universitet = scanner.nextLine()
 
-    // "Student" tipli dəyişən GraduateStudent obyektinə işarə edir (Polymorphism)
-    val student: Student = GraduateStudent(name, university)
+    // "Telebe" tipli dəyişən MagistrTelebe obyektinə işarə edir (Polymorphism)
+    val telebe: Telebe = MagistrTelebe(ad, universitet)
 
-    student.showInfo()
+    telebe.melumatGoster()
 
     println()
 
     // Sabit dəyərlərlə ikinci nümunə
-    val phd: Student = PhDStudent("Nigar", "Artificial Intelligence")
+    val doktorant: Telebe = DoktorantTelebe("Nigar", "Süni İntellekt")
 
-    phd.showInfo()
+    doktorant.melumatGoster()
 
     scanner.close()
 }
